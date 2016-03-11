@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace RubikCube
+namespace Rubik_cube
 {
     /// <summary>
     /// This is the main type for your game
@@ -18,6 +18,7 @@ namespace RubikCube
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Camera cam;
 
         public Game1()
         {
@@ -33,7 +34,9 @@ namespace RubikCube
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+
+            cam = new Camera(this, graphics, new Vector3(-40.0f, -40.0f, 20.0f), new Vector3(0.0f, 0.0f, 0.0f));
+            Components.Add(cam);
 
             base.Initialize();
         }
@@ -46,7 +49,7 @@ namespace RubikCube
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            
             // TODO: use this.Content to load your game content here
         }
 

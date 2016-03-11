@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{90897F62-D26D-4657-BCD1-DFE75D351BF8}</ProjectGuid>
+    <ProjectGuid>{CD69B569-C730-468C-A476-9FA9EA01E28A}</ProjectGuid>
     <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RubikCube</RootNamespace>
-    <AssemblyName>RubikCube</AssemblyName>
+    <RootNamespace>Rubik_cube</RootNamespace>
+    <AssemblyName>Rubik_cube</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows</XnaPlatform>
     <XnaProfile>Reach</XnaProfile>
-    <XnaCrossPlatformGroupID>0f2e4e95-293f-4791-be88-91ec2c1ff160</XnaCrossPlatformGroupID>
+    <XnaCrossPlatformGroupID>8f624a46-22e2-4706-90b3-30e8d86bc1df</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
     <ApplicationIcon>Game.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
@@ -57,6 +57,9 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Camera.cs" />
+    <Compile Include="Cube.cs" />
+    <Compile Include="Face.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
@@ -68,8 +71,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RubikCubeContent\RubikCubeContent.contentproj">
-      <Name>RubikCubeContent</Name>
+    <ProjectReference Include="..\Rubik_cubeContent\Rubik_cubeContent.contentproj">
+      <Name>Rubik_cubeContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>
     </ProjectReference>
   </ItemGroup>

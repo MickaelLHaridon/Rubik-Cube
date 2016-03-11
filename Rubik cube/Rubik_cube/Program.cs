@@ -1,6 +1,6 @@
 using System;
 
-namespace RubikCube
+namespace Rubik_cube
 {
 #if WINDOWS || XBOX
     static class Program

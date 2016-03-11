@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RubikCube")]
-[assembly: AssemblyProduct("RubikCube")]
+[assembly: AssemblyTitle("Rubik_cube")]
+[assembly: AssemblyProduct("Rubik_cube")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 // On Windows, the following GUID is for the ID of the typelib if this
 // project is exposed to COM. On other platforms, it unique identifies the
 // title storage container when deploying this assembly to the device.
-[assembly: Guid("90897f62-d26d-4657-bcd1-dfe75d351bf8")]
+[assembly: Guid("cd69b569-c730-468c-a476-9fa9ea01e28a")]
 
 // Version information for an assembly consists of the following four values:
 //
