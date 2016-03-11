@@ -9,145 +9,126 @@ namespace Rubik_cube
 {
     class Cube : DrawableGameComponent
     {
-        Texture2D[] faces;
+        Color[] faces;
         Vector3 position;
         Vector3 rotation;
         BasicEffect effect;
         float scale;
         SpriteBatch spritebatch;
-        VertexPositionTexture[] verticesTex1;
-        VertexPositionTexture[] verticesTex2;
-        VertexPositionTexture[] verticesTex3;
-        VertexPositionTexture[] verticesTex4;
-        VertexPositionTexture[] verticesTex5;
-        VertexPositionTexture[] verticesTex6;
+        VertexPositionColor[] verticesTex1;
+        VertexPositionColor[] verticesTex2;
+        VertexPositionColor[] verticesTex3;
+        VertexPositionColor[] verticesTex4;
+        VertexPositionColor[] verticesTex5;
+        VertexPositionColor[] verticesTex6;
 
         Camera cam;
-        public Cube(Game game, Camera cam) : base(game)
+        public Cube(Game game, Vector3 pos, Vector3 rot) : base(game)
         {
-            this.cam = cam;
-            position = new Vector3(0, 0, 0);
-            rotation = new Vector3(0, 0, 0);
-
+            cam = ((Game1)Game).Components.OfType<Camera>().First();
+            position = pos;
+            rotation = rot;
         }
 
 
         public void CreateCubeTexure()
         {
-            verticesTex1 = new VertexPositionTexture[]
+            Color couleur = Color.Red;
+            verticesTex1 = new VertexPositionColor[]
             {
 
-                new VertexPositionTexture(new Vector3(-1,1,-1), new Vector2(0,0)),
-                new VertexPositionTexture(new Vector3(1,1,-1), new Vector2(1,0)),
-                new VertexPositionTexture(new Vector3(-1,1,1), new Vector2(0,1)),
-                new VertexPositionTexture(new Vector3(1,1,1), new Vector2(1,1))
+                new VertexPositionColor(new Vector3(-1,1,-1), couleur),
+                new VertexPositionColor(new Vector3(1,1,-1),couleur),
+                new VertexPositionColor(new Vector3(-1,1,1), couleur),
+                new VertexPositionColor(new Vector3(1,1,1), couleur)
 
             };
 
-            verticesTex2 = new VertexPositionTexture[]
+            verticesTex2 = new VertexPositionColor[]
             {
 
-                new VertexPositionTexture(new Vector3(1,1,1), new Vector2(0,0)),
-                new VertexPositionTexture(new Vector3(1,1,-1), new Vector2(1,0)),
-                new VertexPositionTexture(new Vector3(1,-1,1), new Vector2(0,1)),
-                new VertexPositionTexture(new Vector3(1,-1,-1), new Vector2(1,1))
+                new VertexPositionColor(new Vector3(1,1,1), couleur),
+                new VertexPositionColor(new Vector3(1,1,-1), couleur),
+                new VertexPositionColor(new Vector3(1,-1,1), couleur),
+                new VertexPositionColor(new Vector3(1,-1,-1), couleur)
 
             };
 
-            verticesTex3 = new VertexPositionTexture[]
+            verticesTex3 = new VertexPositionColor[]
             {
 
-                new VertexPositionTexture(new Vector3(-1,1,1), new Vector2(0,0)),
-                new VertexPositionTexture(new Vector3(1,1,1), new Vector2(1,0)),
-                new VertexPositionTexture(new Vector3(-1,-1,1), new Vector2(0,1)),
-                new VertexPositionTexture(new Vector3(1,-1,1), new Vector2(1,1))
+                new VertexPositionColor(new Vector3(-1,1,1), couleur),
+                new VertexPositionColor(new Vector3(1,1,1), couleur),
+                new VertexPositionColor(new Vector3(-1,-1,1), couleur),
+                new VertexPositionColor(new Vector3(1,-1,1), couleur)
 
             };
 
-            verticesTex4 = new VertexPositionTexture[]
+            verticesTex4 = new VertexPositionColor[]
             {
 
-                new VertexPositionTexture(new Vector3(-1,1,-1), new Vector2(0,0)),
-                new VertexPositionTexture(new Vector3(-1,1,1), new Vector2(1,0)),
-                new VertexPositionTexture(new Vector3(-1,-1,-1), new Vector2(0,1)),
-                new VertexPositionTexture(new Vector3(-1,-1,1), new Vector2(1,1))
+                new VertexPositionColor(new Vector3(-1,1,-1), couleur),
+                new VertexPositionColor(new Vector3(-1,1,1), couleur),
+                new VertexPositionColor(new Vector3(-1,-1,-1), couleur),
+                new VertexPositionColor(new Vector3(-1,-1,1), couleur)
 
             };
 
-            verticesTex5 = new VertexPositionTexture[]
+            verticesTex5 = new VertexPositionColor[]
             {
 
-                new VertexPositionTexture(new Vector3(-1,1,-1), new Vector2(0,0)),
-                new VertexPositionTexture(new Vector3(1,1,-1), new Vector2(1,0)),
-                new VertexPositionTexture(new Vector3(-1,-1,-1), new Vector2(0,1)),
-                new VertexPositionTexture(new Vector3(1,-1,1), new Vector2(1,1))
+                new VertexPositionColor(new Vector3(-1,1,-1), couleur),
+                new VertexPositionColor(new Vector3(1,1,-1), couleur),
+                new VertexPositionColor(new Vector3(-1,-1,-1), couleur),
+                new VertexPositionColor(new Vector3(1,-1,1), couleur)
 
             };
-            verticesTex6 = new VertexPositionTexture[]
+            verticesTex6 = new VertexPositionColor[]
             {
 
-                new VertexPositionTexture(new Vector3(-1,-1,1), new Vector2(0,0)),
-                new VertexPositionTexture(new Vector3(1,-1,1), new Vector2(1,0)),
-                new VertexPositionTexture(new Vector3(-1,-1,-1), new Vector2(0,1)),
-                new VertexPositionTexture(new Vector3(1,-1,-1), new Vector2(1,1))
+                new VertexPositionColor(new Vector3(-1,-1,1), couleur),
+                new VertexPositionColor(new Vector3(1,-1,1), couleur),
+                new VertexPositionColor(new Vector3(-1,-1,-1), couleur),
+                new VertexPositionColor(new Vector3(1,-1,-1), couleur)
 
             };
         }
 
-        public void drawTexture(VertexPositionTexture[] v, Texture2D t, int i)
+
+        public void drawColor(VertexPositionColor[] v)
         {
-            VertexBuffer B = new VertexBuffer(this.GraphicsDevice, typeof(VertexPositionTexture),
-                v.Length, BufferUsage.WriteOnly);
-            B.SetData(v);
-
-            GraphicsDevice.SetVertexBuffer(B);
-            effect.VertexColorEnabled = false;
-            effect.TextureEnabled = true;
-            effect.Texture = t;
-
             foreach (EffectPass pass in effect.CurrentTechnique.Passes)
             {
                 pass.Apply();
-                GraphicsDevice.DrawUserPrimitives<VertexPositionTexture>(PrimitiveType.TriangleStrip, v, 0, v.Length / 2);
-
+                GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, v, 0, v.Length / 2);
             }
         }
 
         public override void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime);
             effect.View = cam.view;
             effect.Projection = cam.projection;
-            effect.World = Matrix.CreateFromYawPitchRoll(this.rotation.Y,
+            effect.World = Matrix.CreateFromYawPitchRoll(rotation.Y,
             rotation.X, rotation.Z) * Matrix.CreateScale(4) * Matrix.CreateTranslation(position);
 
-            drawTexture(verticesTex1, faces[0], 1);
-            drawTexture(verticesTex2, faces[1], 2);
-            drawTexture(verticesTex3, faces[2], 3);
-            drawTexture(verticesTex4, faces[3], 4);
-            drawTexture(verticesTex5, faces[4], 5);
-            drawTexture(verticesTex6, faces[5], 6);
+            effect.VertexColorEnabled = true;
 
+            drawColor(verticesTex1);
+            drawColor(verticesTex2);
+            drawColor(verticesTex3);
+            drawColor(verticesTex4);
+            drawColor(verticesTex5);
+            drawColor(verticesTex6);
 
-
-
-
+            base.Draw(gameTime);
         }
+
         protected override void LoadContent()
         {
             spritebatch = new SpriteBatch(GraphicsDevice);
             effect = new BasicEffect(GraphicsDevice);
             CreateCubeTexure();
-            faces = new Texture2D[6];
-            faces[0] = ((Game1)Game).Content.Load<Texture2D>("Chrysanthemum");
-            faces[1] = ((Game1)Game).Content.Load<Texture2D>("Desert");
-            faces[2] = ((Game1)Game).Content.Load<Texture2D>("Hydrangeas");
-            faces[3] = ((Game1)Game).Content.Load<Texture2D>("Lighthouse");
-            faces[4] = ((Game1)Game).Content.Load<Texture2D>("Penguins");
-            faces[5] = ((Game1)Game).Content.Load<Texture2D>("Tulips");
-
-            ((Game1)Game).GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
-
+       
             base.LoadContent();
         }
 
