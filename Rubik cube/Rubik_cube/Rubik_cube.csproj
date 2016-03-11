@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Camera.cs" />
     <Compile Include="Cube.cs" />
+    <Compile Include="EnsembleCubes.cs" />
     <Compile Include="Face.cs" />
     <Compile Include="GestionFace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

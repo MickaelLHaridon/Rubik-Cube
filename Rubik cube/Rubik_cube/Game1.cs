@@ -20,7 +20,8 @@ namespace Rubik_cube
         SpriteBatch spriteBatch;
         Camera cam;
         GestionFace gestFace;
-        Cube cube;
+        EnsembleCubes ensCubes;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -39,8 +40,8 @@ namespace Rubik_cube
             gestFace = new GestionFace(this);
             Components.Add(cam);
             Components.Add(gestFace);
-            cube = new Cube(this, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-            Components.Add(cube);
+            ensCubes = new EnsembleCubes(this);
+            Components.Add(ensCubes);
             base.Initialize();
         }
 
