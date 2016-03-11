@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubikCube", "RubikCube\RubikCube\RubikCube.csproj", "{90897F62-D26D-4657-BCD1-DFE75D351BF8}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "RubikCubeContent", "RubikCube\RubikCubeContent\RubikCubeContent.contentproj", "{D4E4E9AD-DF18-4247-AC27-408E45996E82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90897F62-D26D-4657-BCD1-DFE75D351BF8}.Debug|x86.ActiveCfg = Debug|x86
+		{90897F62-D26D-4657-BCD1-DFE75D351BF8}.Debug|x86.Build.0 = Debug|x86
+		{90897F62-D26D-4657-BCD1-DFE75D351BF8}.Release|x86.ActiveCfg = Release|x86
+		{90897F62-D26D-4657-BCD1-DFE75D351BF8}.Release|x86.Build.0 = Release|x86
+		{D4E4E9AD-DF18-4247-AC27-408E45996E82}.Debug|x86.ActiveCfg = Debug|x86
+		{D4E4E9AD-DF18-4247-AC27-408E45996E82}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
