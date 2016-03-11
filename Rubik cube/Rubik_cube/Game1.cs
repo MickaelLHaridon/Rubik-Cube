@@ -35,11 +35,11 @@ namespace Rubik_cube
         /// </summary>
         protected override void Initialize()
         {
-            cam = new Camera(this, graphics, new Vector3(-40.0f, -40.0f, 20.0f), new Vector3(0.0f, 0.0f, 0.0f));
+            cam = new Camera(this, graphics, new Vector3(0.0f, 0.0f, 40.0f), new Vector3(0.0f, 0.0f, 0.0f));
             gestFace = new GestionFace(this);
             Components.Add(cam);
             Components.Add(gestFace);
-            cube = new Cube(this, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+            cube = new Cube(this, new Vector3(0, 0, 0), new Vector3(100, 40, -20));
             Components.Add(cube);
             base.Initialize();
         }

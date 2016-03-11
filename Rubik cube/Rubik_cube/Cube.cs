@@ -15,12 +15,12 @@ namespace Rubik_cube
         BasicEffect effect;
         float scale;
         SpriteBatch spritebatch;
+        VertexPositionColor[] verticesTex0;
         VertexPositionColor[] verticesTex1;
         VertexPositionColor[] verticesTex2;
         VertexPositionColor[] verticesTex3;
         VertexPositionColor[] verticesTex4;
         VertexPositionColor[] verticesTex5;
-        VertexPositionColor[] verticesTex6;
 
         Camera cam;
         public Cube(Game game, Vector3 pos, Vector3 rot) : base(game)
@@ -33,65 +33,59 @@ namespace Rubik_cube
 
         public void CreateCubeTexure()
         {
-            Color couleur = Color.Red;
+            verticesTex0 = new VertexPositionColor[]
+            {
+                new VertexPositionColor(new Vector3(-1,1,1),  Color.Pink),
+                new VertexPositionColor(new Vector3(1,1,1),  Color.Pink),
+                new VertexPositionColor(new Vector3(-1,-1,1),  Color.Pink),
+                new VertexPositionColor(new Vector3(1,-1,1),  Color.Pink)
+            };
+
             verticesTex1 = new VertexPositionColor[]
             {
-
-                new VertexPositionColor(new Vector3(-1,1,-1), couleur),
-                new VertexPositionColor(new Vector3(1,1,-1),couleur),
-                new VertexPositionColor(new Vector3(-1,1,1), couleur),
-                new VertexPositionColor(new Vector3(1,1,1), couleur)
-
+                new VertexPositionColor(new Vector3(1,1,1), Color.Red),
+                new VertexPositionColor(new Vector3(1,1,-1), Color.Red),
+                new VertexPositionColor(new Vector3(1,-1,1), Color.Red),
+                new VertexPositionColor(new Vector3(1,-1,-1), Color.Red)
             };
 
             verticesTex2 = new VertexPositionColor[]
             {
-
-                new VertexPositionColor(new Vector3(1,1,1), couleur),
-                new VertexPositionColor(new Vector3(1,1,-1), couleur),
-                new VertexPositionColor(new Vector3(1,-1,1), couleur),
-                new VertexPositionColor(new Vector3(1,-1,-1), couleur)
+                new VertexPositionColor(new Vector3(1,1,-1), Color.Green),
+                new VertexPositionColor(new Vector3(-1,1,-1), Color.Green),
+                new VertexPositionColor(new Vector3(1,-1,-1), Color.Green),
+                new VertexPositionColor(new Vector3(-1,-1,-1), Color.Green)
 
             };
 
             verticesTex3 = new VertexPositionColor[]
             {
 
-                new VertexPositionColor(new Vector3(-1,1,1), couleur),
-                new VertexPositionColor(new Vector3(1,1,1), couleur),
-                new VertexPositionColor(new Vector3(-1,-1,1), couleur),
-                new VertexPositionColor(new Vector3(1,-1,1), couleur)
+                new VertexPositionColor(new Vector3(-1,1,-1), Color.Yellow),
+                new VertexPositionColor(new Vector3(-1,1,1), Color.Yellow),
+                new VertexPositionColor(new Vector3(-1,-1,-1), Color.Yellow),
+                new VertexPositionColor(new Vector3(-1,-1,1), Color.Yellow)
 
             };
 
             verticesTex4 = new VertexPositionColor[]
             {
-
-                new VertexPositionColor(new Vector3(-1,1,-1), couleur),
-                new VertexPositionColor(new Vector3(-1,1,1), couleur),
-                new VertexPositionColor(new Vector3(-1,-1,-1), couleur),
-                new VertexPositionColor(new Vector3(-1,-1,1), couleur)
-
+                new VertexPositionColor(new Vector3(-1,-1,1), Color.Blue),
+                new VertexPositionColor(new Vector3(1,-1,1),Color.Blue),
+                new VertexPositionColor(new Vector3(-1,-1,-1),Color.Blue),
+                new VertexPositionColor(new Vector3(1,-1,-1), Color.Blue)
             };
 
             verticesTex5 = new VertexPositionColor[]
             {
+                new VertexPositionColor(new Vector3(-1,1,-1), Color.Orange),
+                new VertexPositionColor(new Vector3(1,1,-1), Color.Orange),
+                new VertexPositionColor(new Vector3(-1,1,1), Color.Orange),
+                new VertexPositionColor(new Vector3(1,1,1), Color.Orange)
 
-                new VertexPositionColor(new Vector3(-1,1,-1), couleur),
-                new VertexPositionColor(new Vector3(1,1,-1), couleur),
-                new VertexPositionColor(new Vector3(-1,-1,-1), couleur),
-                new VertexPositionColor(new Vector3(1,-1,1), couleur)
-
-            };
-            verticesTex6 = new VertexPositionColor[]
-            {
-
-                new VertexPositionColor(new Vector3(-1,-1,1), couleur),
-                new VertexPositionColor(new Vector3(1,-1,1), couleur),
-                new VertexPositionColor(new Vector3(-1,-1,-1), couleur),
-                new VertexPositionColor(new Vector3(1,-1,-1), couleur)
 
             };
+           
         }
 
 
@@ -112,17 +106,21 @@ namespace Rubik_cube
             rotation.X, rotation.Z) * Matrix.CreateScale(4) * Matrix.CreateTranslation(position);
 
             effect.VertexColorEnabled = true;
-
+            drawColor(verticesTex0);
             drawColor(verticesTex1);
             drawColor(verticesTex2);
             drawColor(verticesTex3);
             drawColor(verticesTex4);
             drawColor(verticesTex5);
-            drawColor(verticesTex6);
 
             base.Draw(gameTime);
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            rotation += new Vector3(0, 0.1f, 0);
+            base.Update(gameTime);
+        }
         protected override void LoadContent()
         {
             spritebatch = new SpriteBatch(GraphicsDevice);
