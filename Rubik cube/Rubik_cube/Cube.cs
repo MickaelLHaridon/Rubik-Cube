@@ -102,8 +102,7 @@ namespace Rubik_cube
         {
             effect.View = cam.view;
             effect.Projection = cam.projection;
-            effect.World = Matrix.CreateFromYawPitchRoll(rotation.Y,
-            rotation.X, rotation.Z) * Matrix.CreateScale(4) * Matrix.CreateTranslation(position);
+            effect.World = cam.world;
 
             effect.VertexColorEnabled = true;
             drawColor(verticesTex0);
@@ -118,7 +117,7 @@ namespace Rubik_cube
 
         public override void Update(GameTime gameTime)
         {
-            rotation += new Vector3(0, 0.1f, 0);
+            //rotation += new Vector3(0, 0.1f, 0);
             base.Update(gameTime);
         }
         protected override void LoadContent()

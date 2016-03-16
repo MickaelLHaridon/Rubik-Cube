@@ -48,41 +48,35 @@ namespace Rubik_cube
 
         public void CreerCubes()
         {
-            tabCubes[0,0] = new Cube(this.Game, new Vector3(-5, -5, -5),new Vector3(90, 90, 90));
-
-            tabCubes[0,1] = new Cube(this.Game, new Vector3(0, -5, -5), new Vector3(90, 90, 90));
-
-            tabCubes[0,2] = new Cube(this.Game, new Vector3(5, -5, -5), new Vector3(90, 90, 90));
-
-            tabCubes[0,3] = new Cube(this.Game, new Vector3(-5, 0, -5), new Vector3(90, 90, 90));
-
-            tabCubes[0,4] = new Cube(this.Game, new Vector3(0, 0, -5), new Vector3(90, 90, 90));
-
-            tabCubes[0,5] = new Cube(this.Game, new Vector3(5, 0, -5), new Vector3(90, 90, 90));
-
-            tabCubes[0,6] = new Cube(this.Game, new Vector3(-5, 5, -5), new Vector3(90, 90, 90));
-
-            tabCubes[0,7] = new Cube(this.Game, new Vector3(0, 5, -5), new Vector3(90, 90, 90));
-
-            tabCubes[0,8] = new Cube(this.Game, new Vector3(5, 5, -5), new Vector3(90, 90, 90));            
-
-
-            for (int i=0; i<9; i++)
+            for(int i=0;i<3;i++)
             {
-                ((Game1)Game).Components.Add(tabCubes[0, i]);
+                tabCubes[i, 0] = new Cube(this.Game, new Vector3(-5, -5, -5*i), new Vector3(0, 0, 0));
+
+                tabCubes[i, 1] = new Cube(this.Game, new Vector3(0, -5, -5*i), new Vector3(0, 0, 0));
+
+                tabCubes[i, 2] = new Cube(this.Game, new Vector3(5, -5, -5*i), new Vector3(0, 0, 0));
+
+                tabCubes[i, 3] = new Cube(this.Game, new Vector3(-5, 0, -5*i), new Vector3(0, 0, 0));
+
+                tabCubes[i, 4] = new Cube(this.Game, new Vector3(0, 0, -5*i), new Vector3(0, 0, 0));
+
+                tabCubes[i, 5] = new Cube(this.Game, new Vector3(5, 0, -5*i), new Vector3(0, 0, 0));
+
+                tabCubes[i, 6] = new Cube(this.Game, new Vector3(-5, 5, -5*i), new Vector3(0, 0, 0));
+
+                tabCubes[i, 7] = new Cube(this.Game, new Vector3(0, 5, -5*i), new Vector3(0, 0, 0));
+
+                tabCubes[i, 8] = new Cube(this.Game, new Vector3(5, 5, -5*i), new Vector3(0, 0, 0));
             }
-            /*
-            Cube cube10 = new Cube(this.Game, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-            ((Game1)Game).Components.Add(cube10);
             
 
-            Cube cube11 = new Cube(this.Game, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-            ((Game1)Game).Components.Add(cube11);
-            
-
-            Cube cube12 = new Cube(this.Game, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
-            ((Game1)Game).Components.Add(cube12);
-            */
+            for(int i=0;i<3;i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    ((Game1)Game).Components.Add(tabCubes[i, j]);
+                }
+            } 
         }
     }
 }
