@@ -12,7 +12,11 @@ namespace Rubik_cube
     {
         Vector3 camPosition;
         Vector3 camLookAt;
-        Vector3 cible;
+        public Vector3 cible
+        {
+            get;
+            set;
+        }
         float rotation;
         float angle;
         float distance;
@@ -32,26 +36,27 @@ namespace Rubik_cube
 
         public Camera(Game game) : base(game)
         {
-            cible = new Vector3(0, 0, -5);
-            camPosition = new Vector3(0, 0, 0);
-            projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45f),Game.GraphicsDevice.DisplayMode.AspectRatio,1f, 1000f);
+            cible = new Vector3(0, 0, 0);
+            camPosition = new Vector3(0, 0, 15);
+            projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4,Game.GraphicsDevice.DisplayMode.AspectRatio,1f, 1000f);
             view = Matrix.CreateLookAt(camPosition, cible, new Vector3(0f, 1f, 0f));
             world = Matrix.CreateWorld(cible, Vector3.Forward, Vector3.Up);
         }
 
         public override void Update(GameTime gameTime)
         {
+            
             KeyboardState keyboardState = Keyboard.GetState();
 
             if (keyboardState.IsKeyDown(Keys.A))
             {
                 camPosition.Z += 1;
-                cible.Z += 1;
+                //cible.Z += 1;
             }
             if (keyboardState.IsKeyDown(Keys.E))
             {
                 camPosition.Z-= 1;
-                cible.Z -= 1;
+                //cible.Z -= 1;
             }
             if (keyboardState.IsKeyDown(Keys.Q))
             {
@@ -76,7 +81,7 @@ namespace Rubik_cube
             }
 
             view = Matrix.CreateLookAt(camPosition, cible, Vector3.Up);
-
+            
             base.Update(gameTime);
         }
     }

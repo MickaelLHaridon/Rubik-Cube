@@ -21,7 +21,7 @@ namespace Rubik_cube
         Camera cam;
         GestionFace gestFace;
         EnsembleCubes ensCubes;
-
+        bool boutonCLick = false;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -37,11 +37,12 @@ namespace Rubik_cube
         protected override void Initialize()
         {
             cam = new Camera(this);
-            gestFace = new GestionFace(this);
             Components.Add(cam);
-            Components.Add(gestFace);
             ensCubes = new EnsembleCubes(this);
             Components.Add(ensCubes);
+            gestFace = new GestionFace(this);
+            Components.Add(gestFace);
+            IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -76,8 +77,6 @@ namespace Rubik_cube
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
