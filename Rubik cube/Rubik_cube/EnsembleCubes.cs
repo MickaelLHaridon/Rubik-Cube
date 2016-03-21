@@ -62,6 +62,7 @@ namespace Rubik_cube
             return tabCubes;
         }
 
+      
         public Color[] getCouleur(int p, int n)
         {
             Color[] colors = new Color[6];

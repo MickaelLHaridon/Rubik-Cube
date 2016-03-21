@@ -21,7 +21,6 @@ namespace Rubik_cube
         Camera cam;
         GestionFace gestFace;
         EnsembleCubes ensCubes;
-        bool boutonCLick = false;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);

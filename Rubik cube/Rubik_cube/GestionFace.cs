@@ -19,7 +19,7 @@ namespace Rubik_cube
             faces = new Face[6];
             for(int i=0; i<6;i++)
             {
-                faces[i] = new Face(i, ((Game1)Game).Components.OfType<Camera>().First());
+                faces[i] = new Face(game,i, ((Game1)Game).Components.OfType<Camera>().First());
                 appui[i] = false;
             }     
         }
@@ -33,10 +33,61 @@ namespace Rubik_cube
 
         public void UpdateFaces()
         {
+            
+            int i_face = 0;
+            int i_back = 0;
+            int i_droite = 0;
+            int i_gauche = 0;
+            int i_haut = 0;
+            int i_bas = 0;
+
+            for (int j = 0; j < 9; j++)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (tabCubes[i, j].position.Z == 0)
+                    {
+                        faces[0].AjouterCube(i_face, tabCubes[i, j]);
+                        i_face++;
+                    }
+
+                    if (tabCubes[i, j].position.X == 2)
+                    {
+                        Console.WriteLine(i_droite);
+                        Console.WriteLine(tabCubes[i,j].position);
+
+                        faces[1].AjouterCube(i_droite, tabCubes[i, j]);
+                        i_droite++;
+                    }
+
+                    if (tabCubes[i, j].position.Z == -4)
+                    {
+                        faces[2].AjouterCube(i_back, tabCubes[i, j]);
+                        i_back++;
+                    }
+                    if (tabCubes[i, j].position.X == -2)
+                    {
+                        faces[3].AjouterCube(i_gauche, tabCubes[i, j]);
+                        i_gauche++;
+                    }
+                    if (tabCubes[i, j].position.Y == -2)
+                    {
+                        faces[4].AjouterCube(i_bas, tabCubes[i, j]);
+                        i_bas++;
+                    }
+                    if (tabCubes[i, j].position.Y == 2)
+                    {
+                        faces[5].AjouterCube(i_haut, tabCubes[i, j]);
+                        i_haut++;
+                    }
+                }
+            }
+            /*
             //face 0
             for (int i = 0; i < 9; i++)
             {
                 faces[0].AjouterCube(i, tabCubes[0, i]);
+                Console.WriteLine("i: "+i+" "+tabCubes[0, i].position);
             }
             //face 1
             faces[1].AjouterCube(0, tabCubes[0, 2]);
@@ -95,8 +146,7 @@ namespace Rubik_cube
             faces[5].AjouterCube(6, tabCubes[0, 0]);
             faces[5].AjouterCube(7, tabCubes[0, 1]);
             faces[5].AjouterCube(8, tabCubes[0, 2]);
-
-            //Console.WriteLine("type de cube "+tabCubes[0, 0].position);
+            */
         }
 
         public override void Update(GameTime gameTime)
@@ -110,7 +160,7 @@ namespace Rubik_cube
                 {
                     appui[0] = true;
                     faces[0].TranslateFace(DROITE); //GAUCHE
-                    faces[0].RotationFace((float)Math.PI / 2); //-
+                    faces[0].RotationFace(MathHelper.PiOver2); //-
                     UpdateFaces();
                 }
             }
@@ -123,7 +173,7 @@ namespace Rubik_cube
                 {
                     appui[1] = true;
                     faces[1].TranslateFace(DROITE);
-                    faces[1].RotationFace((float)-Math.PI / 2);
+                    faces[1].RotationFace(-MathHelper.PiOver2);
                     UpdateFaces();
                 }
             }
@@ -136,7 +186,7 @@ namespace Rubik_cube
                 {
                     appui[2] = true;
                     faces[2].TranslateFace(DROITE);
-                    faces[2].RotationFace((float)-Math.PI / 2);
+                    faces[2].RotationFace(-MathHelper.PiOver2);
                     UpdateFaces();
                 }
             }
@@ -149,7 +199,7 @@ namespace Rubik_cube
                 {
                     appui[3] = true;
                     faces[3].TranslateFace(DROITE);
-                    faces[3].RotationFace((float)-Math.PI / 2);
+                    faces[3].RotationFace(-MathHelper.PiOver2);
                     UpdateFaces();
                 }
             }
@@ -160,8 +210,8 @@ namespace Rubik_cube
                 if (!appui[4])
                 {
                     appui[4] = true;
-                    faces[4].TranslateFace(GAUCHE);
-                    faces[4].RotationFace((float)Math.PI / 2);
+                    faces[4].TranslateFace(DROITE);
+                    faces[4].RotationFace(-MathHelper.PiOver2);
                     UpdateFaces();
                 }
             }
@@ -173,7 +223,7 @@ namespace Rubik_cube
                 {
                     appui[5] = true;
                     faces[5].TranslateFace(DROITE);
-                    faces[5].RotationFace((float)-Math.PI / 2);
+                    faces[5].RotationFace(-MathHelper.PiOver2);
                     UpdateFaces();
                 }
             }
