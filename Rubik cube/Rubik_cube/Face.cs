@@ -233,10 +233,10 @@ namespace Rubik_cube
                         Vector3 pointToRotateAround = cubes[i].world.Translation +
                             cubes[i].world.Forward;
                         Matrix newWorld = cubes[i].world;
-                        newWorld.Translation -= pointToRotateAround;
+                        //newWorld.Translation -= pointToRotateAround;
                         newWorld *= Matrix.CreateFromAxisAngle(Vector3.Forward, angle);
-                        newWorld.Translation += pointToRotateAround;
-                        cubes[i].world = newWorld;
+                        //newWorld.Translation += pointToRotateAround;
+                        cubes[i].world = newWorld;   
                     }
                     break;
                 case 1:
@@ -245,9 +245,9 @@ namespace Rubik_cube
                         Vector3 pointToRotateAround = cubes[i].world.Translation +
                              cubes[i].world.Right;
                         Matrix newWorld = cubes[i].world;
-                        newWorld.Translation -= pointToRotateAround;
+                        //newWorld.Translation -= pointToRotateAround;
                         newWorld *= Matrix.CreateFromAxisAngle(Vector3.Right, angle);
-                        newWorld.Translation += pointToRotateAround;
+                        //newWorld.Translation += pointToRotateAround;
                         cubes[i].world = newWorld;
                     }
                     break;
@@ -257,9 +257,9 @@ namespace Rubik_cube
                         Vector3 pointToRotateAround = cubes[i].world.Translation +
                              cubes[i].world.Backward;
                         Matrix newWorld = cubes[i].world;
-                        newWorld.Translation -= pointToRotateAround;
+                        //newWorld.Translation -= pointToRotateAround;
                         newWorld *= Matrix.CreateFromAxisAngle(Vector3.Backward, angle);
-                        newWorld.Translation += pointToRotateAround;
+                        //newWorld.Translation += pointToRotateAround;
                         cubes[i].world = newWorld;
                     }
                     break;
@@ -269,9 +269,9 @@ namespace Rubik_cube
                         Vector3 pointToRotateAround = cubes[i].world.Translation +
                              cubes[i].world.Left;
                         Matrix newWorld = cubes[i].world;
-                        newWorld.Translation -= pointToRotateAround;
+                        //newWorld.Translation -= pointToRotateAround;
                         newWorld *= Matrix.CreateFromAxisAngle(Vector3.Left, angle);
-                        newWorld.Translation += pointToRotateAround;
+                        //newWorld.Translation += pointToRotateAround;
                         cubes[i].world = newWorld;
                     }
                     break;
@@ -281,9 +281,9 @@ namespace Rubik_cube
                         Vector3 pointToRotateAround = cubes[i].world.Translation +
                              cubes[i].world.Down;
                         Matrix newWorld = cubes[i].world;
-                        newWorld.Translation -= pointToRotateAround;
+                        //newWorld.Translation -= pointToRotateAround;
                         newWorld *= Matrix.CreateFromAxisAngle(Vector3.Down, angle);
-                        newWorld.Translation += pointToRotateAround;
+                        //newWorld.Translation += pointToRotateAround;
                         cubes[i].world = newWorld;
                     }
                     break;
@@ -293,9 +293,9 @@ namespace Rubik_cube
                         Vector3 pointToRotateAround = cubes[i].world.Translation +
                              cubes[i].world.Up;
                         Matrix newWorld = cubes[i].world;
-                        newWorld.Translation -= pointToRotateAround;
+                        //newWorld.Translation -= pointToRotateAround;
                         newWorld *= Matrix.CreateFromAxisAngle(Vector3.Up, angle);
-                        newWorld.Translation += pointToRotateAround;
+                        //newWorld.Translation += pointToRotateAround;
                         cubes[i].world = newWorld;
                     }
                     break;

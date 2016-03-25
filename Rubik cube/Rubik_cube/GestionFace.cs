@@ -53,9 +53,6 @@ namespace Rubik_cube
 
                     if (tabCubes[i, j].position.X == 2)
                     {
-                        Console.WriteLine(i_droite);
-                        Console.WriteLine(tabCubes[i,j].position);
-
                         faces[1].AjouterCube(i_droite, tabCubes[i, j]);
                         i_droite++;
                     }
@@ -185,8 +182,8 @@ namespace Rubik_cube
                 if (!appui[2])
                 {
                     appui[2] = true;
-                    faces[2].TranslateFace(DROITE);
-                    faces[2].RotationFace(-MathHelper.PiOver2);
+                    faces[2].TranslateFace(GAUCHE);
+                    faces[2].RotationFace(MathHelper.PiOver2);
                     UpdateFaces();
                 }
             }
@@ -198,7 +195,7 @@ namespace Rubik_cube
                 if (!appui[3])
                 {
                     appui[3] = true;
-                    faces[3].TranslateFace(DROITE);
+                    faces[3].TranslateFace(GAUCHE);
                     faces[3].RotationFace(-MathHelper.PiOver2);
                     UpdateFaces();
                 }
@@ -210,7 +207,7 @@ namespace Rubik_cube
                 if (!appui[4])
                 {
                     appui[4] = true;
-                    faces[4].TranslateFace(DROITE);
+                    faces[4].TranslateFace(GAUCHE);
                     faces[4].RotationFace(-MathHelper.PiOver2);
                     UpdateFaces();
                 }
@@ -230,6 +227,7 @@ namespace Rubik_cube
             if (keyboardState.IsKeyUp(Keys.NumPad6))
                 appui[5] = false;
 
+            
             base.Update(gameTime);
         }
     }

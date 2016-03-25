@@ -23,7 +23,6 @@ namespace Rubik_cube
             get;
         }
         BasicEffect effect;
-        float scale;
         public Matrix world
         {
             get; set;
@@ -34,12 +33,14 @@ namespace Rubik_cube
         public float angle { get; set; }
 
         SpriteBatch spritebatch;
-        VertexPositionColor[] verticesTex0;
-        VertexPositionColor[] verticesTex1;
-        VertexPositionColor[] verticesTex2;
-        VertexPositionColor[] verticesTex3;
-        VertexPositionColor[] verticesTex4;
-        VertexPositionColor[] verticesTex5;
+        VertexPositionColorTexture[] verticesTex0;
+        VertexPositionColorTexture[] verticesTex1;
+        VertexPositionColorTexture[] verticesTex2;
+        VertexPositionColorTexture[] verticesTex3;
+        VertexPositionColorTexture[] verticesTex4;
+        VertexPositionColorTexture[] verticesTex5;
+
+        Texture2D texture;
 
         public Camera cam
         {
@@ -53,7 +54,6 @@ namespace Rubik_cube
             position = pos;
             rotation = new Vector3(0,0,1);
             faces = colors;
-            scale = 1;
             world = cam.world;
             RotateTransform = Matrix.Identity;
             angle = 0;
@@ -62,81 +62,90 @@ namespace Rubik_cube
 
         public void CreateCubeTexure()
         {
-            verticesTex0 = new VertexPositionColor[]
+            verticesTex0 = new VertexPositionColorTexture[]
             {
-                new VertexPositionColor(new Vector3(-1,1,1),  faces[0]),
-                new VertexPositionColor(new Vector3(1,1,1),  faces[0]),
-                new VertexPositionColor(new Vector3(-1,-1,1),  faces[0]),
-                new VertexPositionColor(new Vector3(1,-1,1),  faces[0])
+                new VertexPositionColorTexture(new Vector3(-1,1,1),  faces[0], new Vector2(0,0)),
+                new VertexPositionColorTexture(new Vector3(1,1,1),  faces[0], new Vector2(1,0)),
+                new VertexPositionColorTexture(new Vector3(-1,-1,1),  faces[0], new Vector2(0,1)),
+                new VertexPositionColorTexture(new Vector3(1,-1,1),  faces[0], new Vector2(1,1))
             };
 
-            verticesTex1 = new VertexPositionColor[]
+            verticesTex1 = new VertexPositionColorTexture[]
             {
-                new VertexPositionColor(new Vector3(1,1,1), faces[1]),
-                new VertexPositionColor(new Vector3(1,1,-1), faces[1]),
-                new VertexPositionColor(new Vector3(1,-1,1), faces[1]),
-                new VertexPositionColor(new Vector3(1,-1,-1), faces[1])
+                new VertexPositionColorTexture(new Vector3(1,1,1), faces[1], new Vector2(0,0)),
+                new VertexPositionColorTexture(new Vector3(1,1,-1), faces[1], new Vector2(1,0)),
+                new VertexPositionColorTexture(new Vector3(1,-1,1), faces[1], new Vector2(0,1)),
+                new VertexPositionColorTexture(new Vector3(1,-1,-1), faces[1], new Vector2(1,1))
             };
 
-            verticesTex2 = new VertexPositionColor[]
+            verticesTex2 = new VertexPositionColorTexture[]
             {
-                new VertexPositionColor(new Vector3(1,1,-1), faces[2]),
-                new VertexPositionColor(new Vector3(-1,1,-1), faces[2]),
-                new VertexPositionColor(new Vector3(1,-1,-1), faces[2]),
-                new VertexPositionColor(new Vector3(-1,-1,-1), faces[2])
-
-            };
-
-            verticesTex3 = new VertexPositionColor[]
-            {
-
-                new VertexPositionColor(new Vector3(-1,1,-1), faces[3]),
-                new VertexPositionColor(new Vector3(-1,1,1), faces[3]),
-                new VertexPositionColor(new Vector3(-1,-1,-1), faces[3]),
-                new VertexPositionColor(new Vector3(-1,-1,1), faces[3])
+                new VertexPositionColorTexture(new Vector3(1,1,-1), faces[2], new Vector2(0,0)),
+                new VertexPositionColorTexture(new Vector3(-1,1,-1), faces[2], new Vector2(1,0)),
+                new VertexPositionColorTexture(new Vector3(1,-1,-1), faces[2], new Vector2(0,1)),
+                new VertexPositionColorTexture(new Vector3(-1,-1,-1), faces[2], new Vector2(1,1))
 
             };
 
-            verticesTex4 = new VertexPositionColor[]
+            verticesTex3 = new VertexPositionColorTexture[]
             {
-                new VertexPositionColor(new Vector3(-1,-1,1), faces[4]),
-                new VertexPositionColor(new Vector3(1,-1,1), faces[4]),
-                new VertexPositionColor(new Vector3(-1,-1,-1), faces[4]),
-                new VertexPositionColor(new Vector3(1,-1,-1), faces[4])
+
+                new VertexPositionColorTexture(new Vector3(-1,1,-1), faces[3], new Vector2(0,0)),
+                new VertexPositionColorTexture(new Vector3(-1,1,1), faces[3], new Vector2(1,0)),
+                new VertexPositionColorTexture(new Vector3(-1,-1,-1), faces[3], new Vector2(0,1)),
+                new VertexPositionColorTexture(new Vector3(-1,-1,1), faces[3], new Vector2(1,1))
+
             };
 
-            verticesTex5 = new VertexPositionColor[]
+            verticesTex4 = new VertexPositionColorTexture[]
             {
-                new VertexPositionColor(new Vector3(-1,1,-1), faces[5]),
-                new VertexPositionColor(new Vector3(1,1,-1), faces[5]),
-                new VertexPositionColor(new Vector3(-1,1,1), faces[5]),
-                new VertexPositionColor(new Vector3(1,1,1), faces[5])
+                new VertexPositionColorTexture(new Vector3(-1,-1,1), faces[4], new Vector2(0,0)),
+                new VertexPositionColorTexture(new Vector3(1,-1,1), faces[4], new Vector2(1,0)),
+                new VertexPositionColorTexture(new Vector3(-1,-1,-1), faces[4], new Vector2(0,1)),
+                new VertexPositionColorTexture(new Vector3(1,-1,-1), faces[4], new Vector2(1,1))
+            };
+
+            verticesTex5 = new VertexPositionColorTexture[]
+            {
+                new VertexPositionColorTexture(new Vector3(-1,1,-1), faces[5], new Vector2(0,0)),
+                new VertexPositionColorTexture(new Vector3(1,1,-1), faces[5], new Vector2(1,0)),
+                new VertexPositionColorTexture(new Vector3(-1,1,1), faces[5], new Vector2(0,1)),
+                new VertexPositionColorTexture(new Vector3(1,1,1), faces[5], new Vector2(1,1))
             };
            
         }
 
-
-        public void drawColor(VertexPositionColor[] v)
+        public void drawColorTexture(VertexPositionColorTexture[] v)
         {
+            VertexBuffer B = new VertexBuffer(this.GraphicsDevice, typeof(VertexPositionColorTexture),
+                v.Length, BufferUsage.WriteOnly);
+            B.SetData(v);
+
+            GraphicsDevice.SetVertexBuffer(B);
+            effect.VertexColorEnabled = true;
+            effect.TextureEnabled = true;
+            effect.Texture = texture;
+
             foreach (EffectPass pass in effect.CurrentTechnique.Passes)
             {
                 pass.Apply();
-                GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, v, 0, v.Length / 2);
+                GraphicsDevice.SamplerStates[0] = SamplerState.LinearClamp;
+                GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, v, 0, v.Length/2);
             }
         }
-
         public override void Draw(GameTime gameTime)
         {
+
             effect.View = cam.view;
             effect.Projection = cam.projection;
             effect.World = world * Matrix.CreateTranslation(position); //* Matrix.CreateFromAxisAngle(rotation, angle);
-            effect.VertexColorEnabled = true;
-            drawColor(verticesTex0);
-            drawColor(verticesTex1);
-            drawColor(verticesTex2);
-            drawColor(verticesTex3);
-            drawColor(verticesTex4);
-            drawColor(verticesTex5);
+     
+            drawColorTexture(verticesTex0);
+            drawColorTexture(verticesTex1);
+            drawColorTexture(verticesTex2);
+            drawColorTexture(verticesTex3);
+            drawColorTexture(verticesTex4);
+            drawColorTexture(verticesTex5);
 
             base.Draw(gameTime);
         }
@@ -188,6 +197,7 @@ namespace Rubik_cube
         {
             spritebatch = new SpriteBatch(GraphicsDevice);
             effect = new BasicEffect(GraphicsDevice);
+            texture = ((Game1)Game).Content.Load<Texture2D>("Coin");
             CreateCubeTexure();
        
             base.LoadContent();
