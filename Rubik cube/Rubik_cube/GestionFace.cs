@@ -10,7 +10,7 @@ namespace Rubik_cube
     class GestionFace : GameComponent
     {
         Face[] faces;
-        Cube[,] tabCubes;
+        Cube[] lesCubes;
         bool[] appui = new bool[6];
         const int DROITE = 0;
         const int GAUCHE = 1;
@@ -26,14 +26,15 @@ namespace Rubik_cube
 
         public override void Initialize()
         {
-            tabCubes = ((Game1)Game).Components.OfType<EnsembleCubes>().First().getCubes();
+            lesCubes = ((Game1)Game).Components.OfType<Cube>().ToArray();
             UpdateFaces();
             base.Initialize();
         }
 
         public void UpdateFaces()
         {
-            
+            Console.WriteLine("-----------------");
+            lesCubes = lesCubes.OrderBy(Cube => Cube.numero).ToArray();
             int i_face = 0;
             int i_back = 0;
             int i_droite = 0;
@@ -41,6 +42,41 @@ namespace Rubik_cube
             int i_haut = 0;
             int i_bas = 0;
 
+            for(int i = 0; i < 27; i++)
+            {
+                if (lesCubes[i].position.Z == 0)
+                {
+                    faces[0].AjouterCube(i_face, lesCubes[i]);
+                    i_face++;
+                }
+                if (lesCubes[i].position.X == 2)
+                {
+                    faces[1].AjouterCube(i_droite, lesCubes[i]);
+                    i_droite++;
+                }
+
+                if (lesCubes[i].position.Z == -4)
+                {
+                    faces[2].AjouterCube(i_back, lesCubes[i]);
+                    i_back++;
+                }
+                if (lesCubes[i].position.X == -2)
+                {
+                    faces[3].AjouterCube(i_gauche, lesCubes[i]);
+                    i_gauche++;
+                }
+                if (lesCubes[i].position.Y == -2)
+                {
+                    faces[4].AjouterCube(i_bas, lesCubes[i]);
+                    i_bas++;
+                }
+                if (lesCubes[i].position.Y == 2)
+                {
+                    faces[5].AjouterCube(i_haut, lesCubes[i]);
+                    i_haut++;
+                }
+            }
+            /*
             for (int j = 0; j < 9; j++)
             {
                 for (int i = 0; i < 3; i++)
@@ -79,6 +115,7 @@ namespace Rubik_cube
                     }
                 }
             }
+            */
             /*
             //face 0
             for (int i = 0; i < 9; i++)
@@ -169,7 +206,7 @@ namespace Rubik_cube
                 if (!appui[1])
                 {
                     appui[1] = true;
-                    faces[1].TranslateFace(DROITE);
+                    faces[1].TranslateFace(GAUCHE);
                     faces[1].RotationFace(-MathHelper.PiOver2);
                     UpdateFaces();
                 }
@@ -195,7 +232,7 @@ namespace Rubik_cube
                 if (!appui[3])
                 {
                     appui[3] = true;
-                    faces[3].TranslateFace(GAUCHE);
+                    faces[3].TranslateFace(DROITE);
                     faces[3].RotationFace(-MathHelper.PiOver2);
                     UpdateFaces();
                 }
@@ -207,7 +244,7 @@ namespace Rubik_cube
                 if (!appui[4])
                 {
                     appui[4] = true;
-                    faces[4].TranslateFace(GAUCHE);
+                    faces[4].TranslateFace(DROITE);
                     faces[4].RotationFace(-MathHelper.PiOver2);
                     UpdateFaces();
                 }
@@ -220,7 +257,7 @@ namespace Rubik_cube
                 {
                     appui[5] = true;
                     faces[5].TranslateFace(DROITE);
-                    faces[5].RotationFace(-MathHelper.PiOver2);
+                    faces[5].RotationFace(MathHelper.PiOver2);
                     UpdateFaces();
                 }
             }

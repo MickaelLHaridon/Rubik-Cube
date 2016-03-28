@@ -201,28 +201,25 @@ namespace Rubik_cube
         }
         public void CreerCubes()
         {
-            
-            for(int i=0;i<3;i++)
+            for (int i=0;i<3;i++)
             {
+                tabCubes[i, 0] = new Cube(this.Game, 0 + (9 * i) ,new Vector3(-2, 2, -2 * i), getCouleur(i, 0));
 
-                tabCubes[i, 0] = new Cube(this.Game, new Vector3(-2, 2, -2*i), getCouleur(i,0));
-            
-                tabCubes[i, 1] = new Cube(this.Game, new Vector3(0, 2, -2*i), getCouleur(i, 1));
+                tabCubes[i, 1] = new Cube(this.Game, 1 + (9 * i), new Vector3(0, 2, -2 * i), getCouleur(i, 1));
 
-                tabCubes[i, 2] = new Cube(this.Game, new Vector3(2, 2, -2*i), getCouleur(i, 2));
+                tabCubes[i, 2] = new Cube(this.Game, 2 + (9 * i), new Vector3(2, 2, -2 * i), getCouleur(i, 2));
 
-                tabCubes[i, 3] = new Cube(this.Game, new Vector3(-2, 0, -2*i), getCouleur(i, 3));
+                tabCubes[i, 3] = new Cube(this.Game, 3 + (9 * i), new Vector3(-2, 0, -2 * i), getCouleur(i, 3));
 
-                tabCubes[i, 4] = new Cube(this.Game, new Vector3(0, 0, -2*i), getCouleur(i, 4));
+                tabCubes[i, 4] = new Cube(this.Game, 4 + (9 * i), new Vector3(0, 0, -2 * i), getCouleur(i, 4));
 
-                tabCubes[i, 5] = new Cube(this.Game, new Vector3(2, 0, -2*i), getCouleur(i, 5));
+                tabCubes[i, 5] = new Cube(this.Game, 5 + (9 * i), new Vector3(2, 0, -2 * i), getCouleur(i, 5));
 
-                tabCubes[i, 6] = new Cube(this.Game, new Vector3(-2, -2, -2*i), getCouleur(i, 6));
+                tabCubes[i, 6] = new Cube(this.Game, 6 + (9 * i), new Vector3(-2,-2, -2 * i), getCouleur(i, 6));
 
-                tabCubes[i, 7] = new Cube(this.Game, new Vector3(0, -2, -2*i), getCouleur(i, 7));
-
-                tabCubes[i, 8] = new Cube(this.Game, new Vector3(2, -2, -2*i), getCouleur(i, 8));
-
+                tabCubes[i, 7] = new Cube(this.Game, 7 + (9 * i), new Vector3(0, -2, -2 * i), getCouleur(i, 7));
+ 
+                tabCubes[i, 8] = new Cube(this.Game, 8 + (9 * i), new Vector3(2, -2, -2 * i), getCouleur(i, 8));
             }
             
             for (int i=0;i<3;i++)

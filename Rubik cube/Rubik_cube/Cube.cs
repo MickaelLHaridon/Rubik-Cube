@@ -48,9 +48,16 @@ namespace Rubik_cube
             set;
         }
 
-        public Cube(Game game, Vector3 pos, Color[] colors) : base(game)
+        public int numero
+        {
+            get;
+            set;
+        }
+
+        public Cube(Game game,int num, Vector3 pos, Color[] colors) : base(game)
         {
             cam = ((Game1)Game).Components.OfType<Camera>().First();
+            numero = num;
             position = pos;
             rotation = new Vector3(0,0,1);
             faces = colors;
