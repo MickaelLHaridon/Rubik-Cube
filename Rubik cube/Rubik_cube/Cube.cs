@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Rubik_cube
 {
-    class Cube : DrawableGameComponent
+    public class Cube : DrawableGameComponent
     {
         public Color[] faces {
             get;
@@ -47,16 +47,22 @@ namespace Rubik_cube
             set;
         }
 
-        public int numero
+        public int numeroPosition
         {
             get;
             set;
         }
 
+        public int numeroCube
+        {
+            get; set;
+        }
+
         public Cube(Game game,int num, Vector3 pos, Color[] colors) : base(game)
         {
             cam = ((Game1)Game).Components.OfType<Camera>().First();
-            numero = num;
+            numeroPosition = num;
+            numeroCube = num;
             position = pos;
             rotation = new Vector3(0,0,1);
             faces = colors;

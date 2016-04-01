@@ -9,8 +9,14 @@ namespace Rubik_cube
 {
     class GestionFace : GameComponent
     {
-        Face[] faces;
-        Cube[] lesCubes;
+        public Face[] faces
+        {
+            get; set;
+        }
+        public Cube[] lesCubes
+        {
+            get; set;
+        }
         bool leftShift = false;
         const float DROITE = 0;
         const float GAUCHE = 1;
@@ -41,7 +47,7 @@ namespace Rubik_cube
 
         public void UpdateFaces()
         {
-            lesCubes = lesCubes.OrderBy(Cube => Cube.numero).ToArray();
+            lesCubes = lesCubes.OrderBy(Cube => Cube.numeroPosition).ToArray();
             int i_face = 0;
             int i_back = 0;
             int i_droite = 0;

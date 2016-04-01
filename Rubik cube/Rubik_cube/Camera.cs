@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Rubik_cube
 {
-    class Camera : GameComponent
+    public class Camera : GameComponent
     {
         Vector3 camPosition;
         public Vector3 cible

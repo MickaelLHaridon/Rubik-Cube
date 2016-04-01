@@ -48,17 +48,17 @@ namespace Rubik_cube
                 pos[7] = cubes[3].position;
                 pos[8] = cubes[6].position;
                 
-                num[0] = cubes[2].numero;
-                num[1] = cubes[5].numero;
-                num[2] = cubes[8].numero;
+                num[0] = cubes[2].numeroPosition;
+                num[1] = cubes[5].numeroPosition;
+                num[2] = cubes[8].numeroPosition;
 
-                num[3] = cubes[1].numero;
-                num[4] = cubes[4].numero;
-                num[5] = cubes[7].numero;
+                num[3] = cubes[1].numeroPosition;
+                num[4] = cubes[4].numeroPosition;
+                num[5] = cubes[7].numeroPosition;
 
-                num[6] = cubes[0].numero;
-                num[7] = cubes[3].numero;
-                num[8] = cubes[6].numero;
+                num[6] = cubes[0].numeroPosition;
+                num[7] = cubes[3].numeroPosition;
+                num[8] = cubes[6].numeroPosition;
             }
             if (direction == GAUCHE)
             {
@@ -74,22 +74,22 @@ namespace Rubik_cube
                 pos[7] = cubes[5].position;
                 pos[8] = cubes[2].position;
                 
-                num[0] = cubes[6].numero;
-                num[1] = cubes[3].numero;
-                num[2] = cubes[0].numero;
+                num[0] = cubes[6].numeroPosition;
+                num[1] = cubes[3].numeroPosition;
+                num[2] = cubes[0].numeroPosition;
 
-                num[3] = cubes[7].numero;
-                num[4] = cubes[4].numero;
-                num[5] = cubes[1].numero;
+                num[3] = cubes[7].numeroPosition;
+                num[4] = cubes[4].numeroPosition;
+                num[5] = cubes[1].numeroPosition;
 
-                num[6] = cubes[8].numero;
-                num[7] = cubes[5].numero;
-                num[8] = cubes[2].numero;
+                num[6] = cubes[8].numeroPosition;
+                num[7] = cubes[5].numeroPosition;
+                num[8] = cubes[2].numeroPosition;
             }
             for(int i = 0; i < 9; i++)
             {
                 cubes[i].position = pos[i];
-                cubes[i].numero = num[i];
+                cubes[i].numeroPosition = num[i];
             }
                         
         }
