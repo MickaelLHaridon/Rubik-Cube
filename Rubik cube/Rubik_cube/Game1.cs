@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+
 namespace Rubik_cube
 {
     /// <summary>
@@ -76,6 +77,33 @@ namespace Rubik_cube
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+
+
+            KeyboardState k = new KeyboardState();
+
+            MouseState m = new MouseState();
+
+            Vector2 pointA = new Vector2(0,0);
+            Vector2 pointB = new Vector2(0, 0);
+
+            if (m.LeftButton == ButtonState.Pressed)
+            {
+                pointA = new Vector2(m.X, m.Y);
+            }
+            if(m.LeftButton == ButtonState.Released)
+            {
+                pointB = new Vector2(m.X, m.Y);
+                //Vector2 direction = pointA - pointB;
+               // Console.WriteLine("Point A: " + pointA.ToString() + " Point B: " + pointB.ToString());
+            }
+
+            
+           /*
+            if (k.IsKeyDown(Keys.Space))
+            {
+                Console.WriteLine("espace");
+                gestFace.Melanger();
+            }*/
 
             base.Update(gameTime);
         }

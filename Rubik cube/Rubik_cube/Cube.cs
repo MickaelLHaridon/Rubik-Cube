@@ -30,7 +30,6 @@ namespace Rubik_cube
         public Matrix RotateTransform {
             get;set;
         }
-        public float angle { get; set; }
 
         SpriteBatch spritebatch;
         VertexPositionColorTexture[] verticesTex0;
@@ -63,7 +62,6 @@ namespace Rubik_cube
             faces = colors;
             world = cam.world;
             RotateTransform = Matrix.Identity;
-            angle = 0;
         }
 
 
@@ -145,7 +143,7 @@ namespace Rubik_cube
 
             effect.View = cam.view;
             effect.Projection = cam.projection;
-            effect.World = world * Matrix.CreateTranslation(position); //* Matrix.CreateFromAxisAngle(rotation, angle);
+            effect.World = world * Matrix.CreateTranslation(position);
      
             drawColorTexture(verticesTex0);
             drawColorTexture(verticesTex1);
@@ -159,45 +157,7 @@ namespace Rubik_cube
 
         public override void Update(GameTime gameTime)
         {
-           /* KeyboardState keyboardState = Keyboard.GetState();
-            Viewport viewport = Game.GraphicsDevice.Viewport;
-            Vector3 origine = new Vector3(viewport.Width / 2, viewport.Height / 2,0);
-            if (keyboardState.IsKeyDown(Keys.Z))
-            {
-                effect.World += Matrix.CreateTranslation(origine) *
-                Matrix.CreateRotationY((float) Math.PI / 2) *
-                Matrix.CreateTranslation(-origine);
-            }
-            if (keyboardState.IsKeyDown(Keys.S))
-            {
-                effect.World *= Matrix.CreateTranslation(-origine) *
-                Matrix.CreateRotationY((float)-Math.PI / 2) *
-                Matrix.CreateTranslation(origine);
-            }
-            if (keyboardState.IsKeyDown(Keys.Q))
-            {
-                effect.World *= Matrix.CreateTranslation(-origine) *
-                Matrix.CreateRotationX((float)Math.PI / 2) *
-                Matrix.CreateTranslation(origine);
-            }
-            if (keyboardState.IsKeyDown(Keys.S))
-            {
-                effect.World *= Matrix.CreateTranslation(-origine) *
-                Matrix.CreateRotationX((float)-Math.PI / 2) *
-                Matrix.CreateTranslation(origine);
-            }
-            if (keyboardState.IsKeyDown(Keys.A))
-            {
-                effect.World *= Matrix.CreateTranslation(-origine) *
-                Matrix.CreateRotationZ((float)Math.PI / 2) *
-                Matrix.CreateTranslation(origine);
-            }
-            if (keyboardState.IsKeyDown(Keys.E))
-            {
-                effect.World *= Matrix.CreateTranslation(origine) *
-                Matrix.CreateRotationZ((float)-Math.PI / 2) *
-                Matrix.CreateTranslation(origine);
-            }*/
+           
             base.Update(gameTime);
         }
         protected override void LoadContent()

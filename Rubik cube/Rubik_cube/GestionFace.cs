@@ -11,17 +11,23 @@ namespace Rubik_cube
     {
         Face[] faces;
         Cube[] lesCubes;
-        bool[] appui = new bool[6];
-        const int DROITE = 0;
-        const int GAUCHE = 1;
+        bool leftShift = false;
+        const float DROITE = 0;
+        const float GAUCHE = 1;
+        Random rand = new Random();
+        KeyboardState oldKey;
+        KeyboardState newKey;
+        float[,] rotations;
+
         public GestionFace(Game game) :base(game)
         {
             faces = new Face[6];
             for(int i=0; i<6;i++)
             {
                 faces[i] = new Face(game,i, ((Game1)Game).Components.OfType<Camera>().First());
-                appui[i] = false;
-            }     
+            }
+            rotations = new float[6, 2] { { DROITE, MathHelper.PiOver2 }, { GAUCHE, -MathHelper.PiOver2 }, { GAUCHE, MathHelper.PiOver2 },
+                { DROITE, -MathHelper.PiOver2 }, { DROITE, -MathHelper.PiOver2 }, { DROITE, MathHelper.PiOver2 } };
         }
 
         public override void Initialize()
@@ -33,7 +39,6 @@ namespace Rubik_cube
 
         public void UpdateFaces()
         {
-            Console.WriteLine("-----------------");
             lesCubes = lesCubes.OrderBy(Cube => Cube.numero).ToArray();
             int i_face = 0;
             int i_back = 0;
@@ -76,195 +81,112 @@ namespace Rubik_cube
                     i_haut++;
                 }
             }
-            /*
-            for (int j = 0; j < 9; j++)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    if (tabCubes[i, j].position.Z == 0)
-                    {
-                        faces[0].AjouterCube(i_face, tabCubes[i, j]);
-                        i_face++;
-                    }
+        }
 
-                    if (tabCubes[i, j].position.X == 2)
-                    {
-                        faces[1].AjouterCube(i_droite, tabCubes[i, j]);
-                        i_droite++;
-                    }
-
-                    if (tabCubes[i, j].position.Z == -4)
-                    {
-                        faces[2].AjouterCube(i_back, tabCubes[i, j]);
-                        i_back++;
-                    }
-                    if (tabCubes[i, j].position.X == -2)
-                    {
-                        faces[3].AjouterCube(i_gauche, tabCubes[i, j]);
-                        i_gauche++;
-                    }
-                    if (tabCubes[i, j].position.Y == -2)
-                    {
-                        faces[4].AjouterCube(i_bas, tabCubes[i, j]);
-                        i_bas++;
-                    }
-                    if (tabCubes[i, j].position.Y == 2)
-                    {
-                        faces[5].AjouterCube(i_haut, tabCubes[i, j]);
-                        i_haut++;
-                    }
-                }
-            }
-            */
-            /*
-            //face 0
-            for (int i = 0; i < 9; i++)
-            {
-                faces[0].AjouterCube(i, tabCubes[0, i]);
-                Console.WriteLine("i: "+i+" "+tabCubes[0, i].position);
-            }
-            //face 1
-            faces[1].AjouterCube(0, tabCubes[0, 2]);
-            faces[1].AjouterCube(3, tabCubes[0, 5]);
-            faces[1].AjouterCube(6, tabCubes[0, 8]);
-
-            faces[1].AjouterCube(1, tabCubes[1, 2]);
-            faces[1].AjouterCube(4, tabCubes[1, 5]);
-            faces[1].AjouterCube(7, tabCubes[1, 8]);
-
-            faces[1].AjouterCube(2, tabCubes[2, 2]);
-            faces[1].AjouterCube(5, tabCubes[2, 5]);
-            faces[1].AjouterCube(8, tabCubes[2, 8]);
-
-            //face 2
-            for (int i = 0; i < 9; i++)
-            {
-                faces[2].AjouterCube(i, tabCubes[2, i]);
-            }
-
-            //face 3
-            faces[3].AjouterCube(0, tabCubes[2, 0]);
-            faces[3].AjouterCube(3, tabCubes[2, 3]);
-            faces[3].AjouterCube(6, tabCubes[2, 6]);
-
-            faces[3].AjouterCube(1, tabCubes[1, 0]);
-            faces[3].AjouterCube(4, tabCubes[1, 3]);
-            faces[3].AjouterCube(7, tabCubes[1, 6]);
-
-            faces[3].AjouterCube(2, tabCubes[0, 0]);
-            faces[3].AjouterCube(5, tabCubes[0, 3]);
-            faces[3].AjouterCube(8, tabCubes[0, 6]);
-
-            //face 4
-            faces[4].AjouterCube(0, tabCubes[0, 6]);
-            faces[4].AjouterCube(1, tabCubes[0, 7]);
-            faces[4].AjouterCube(2, tabCubes[0, 8]);
-
-            faces[4].AjouterCube(3, tabCubes[1, 6]);
-            faces[4].AjouterCube(4, tabCubes[1, 7]);
-            faces[4].AjouterCube(5, tabCubes[1, 8]);
-
-            faces[4].AjouterCube(6, tabCubes[2, 6]);
-            faces[4].AjouterCube(7, tabCubes[2, 7]);
-            faces[4].AjouterCube(8, tabCubes[2, 8]);
-
-            //face 5
-            faces[5].AjouterCube(0, tabCubes[2, 0]);
-            faces[5].AjouterCube(1, tabCubes[2, 1]);
-            faces[5].AjouterCube(2, tabCubes[2, 2]);
-
-            faces[5].AjouterCube(3, tabCubes[1, 0]);
-            faces[5].AjouterCube(4, tabCubes[1, 1]);
-            faces[5].AjouterCube(5, tabCubes[1, 2]);
-
-            faces[5].AjouterCube(6, tabCubes[0, 0]);
-            faces[5].AjouterCube(7, tabCubes[0, 1]);
-            faces[5].AjouterCube(8, tabCubes[0, 2]);
-            */
+        public void Melanger()
+        {
+            int nb = rand.Next(0, 6);
+            int direction = rand.Next(0, 2);
+            faces[nb].TranslateFace(rand.Next(0, 2));
+           
         }
 
         public override void Update(GameTime gameTime)
         {
-            MouseState state = Mouse.GetState();
+            oldKey = newKey;
+            newKey = Keyboard.GetState();
 
-            KeyboardState keyboardState = Keyboard.GetState();
-            if(keyboardState.IsKeyDown(Keys.NumPad1))
+            if(newKey.IsKeyDown(Keys.LeftShift) && oldKey.IsKeyUp(Keys.LeftShift))
             {
-                if(!appui[0])
-                {
-                    appui[0] = true;
-                    faces[0].TranslateFace(DROITE); //GAUCHE
-                    faces[0].RotationFace(MathHelper.PiOver2); //-
-                    UpdateFaces();
-                }
+                if (leftShift)
+                    leftShift = false;
+                else
+                    leftShift = true;
             }
-            if (keyboardState.IsKeyUp(Keys.NumPad1))
-                appui[0] = false;
 
-            if (keyboardState.IsKeyDown(Keys.NumPad2))
+            if(leftShift)
             {
-                if (!appui[1])
+                if (newKey.IsKeyDown(Keys.NumPad1) && oldKey.IsKeyUp(Keys.NumPad1))
                 {
-                    appui[1] = true;
-                    faces[1].TranslateFace(GAUCHE);
-                    faces[1].RotationFace(-MathHelper.PiOver2);
+                    faces[0].TranslateFace(Math.Abs(rotations[0, 0]-1));
+                    faces[0].RotationFace(Vector3.Forward, -rotations[0, 1]);
                     UpdateFaces();
                 }
-            }
-            if (keyboardState.IsKeyUp(Keys.NumPad2))
-                appui[1] = false;
 
-            if (keyboardState.IsKeyDown(Keys.NumPad3))
-            {
-                if (!appui[2])
+                if (newKey.IsKeyDown(Keys.NumPad2) && oldKey.IsKeyUp(Keys.NumPad2))
                 {
-                    appui[2] = true;
-                    faces[2].TranslateFace(GAUCHE);
-                    faces[2].RotationFace(MathHelper.PiOver2);
+                    faces[1].TranslateFace(Math.Abs(rotations[1, 0]-1));
+                    faces[1].RotationFace(Vector3.Right, -rotations[1, 1]);
                     UpdateFaces();
                 }
-            }
-            if (keyboardState.IsKeyUp(Keys.NumPad3))
-                appui[2] = false;
+                if (newKey.IsKeyDown(Keys.NumPad3) && oldKey.IsKeyUp(Keys.NumPad3))
+                {
+                    faces[2].TranslateFace(Math.Abs(rotations[2, 0]-1));
+                    faces[2].RotationFace(Vector3.Backward, -rotations[2, 1]);
+                    UpdateFaces();
+                }
 
-            if (keyboardState.IsKeyDown(Keys.NumPad4))
-            {
-                if (!appui[3])
+                if (newKey.IsKeyDown(Keys.NumPad4) && oldKey.IsKeyUp(Keys.NumPad4))
                 {
-                    appui[3] = true;
-                    faces[3].TranslateFace(DROITE);
-                    faces[3].RotationFace(-MathHelper.PiOver2);
+                    faces[3].TranslateFace(Math.Abs(rotations[3, 0]-1));
+                    faces[3].RotationFace(Vector3.Left, -rotations[3, 1]);
+                    UpdateFaces();
+                }
+                if (newKey.IsKeyDown(Keys.NumPad5) && oldKey.IsKeyUp(Keys.NumPad5))
+                {
+                    faces[4].TranslateFace(Math.Abs(rotations[4, 0]-1));
+                    faces[4].RotationFace(Vector3.Down, -rotations[4, 1]);
+                    UpdateFaces();
+                }
+                if (newKey.IsKeyDown(Keys.NumPad6) && oldKey.IsKeyUp(Keys.NumPad6))
+                {
+                    faces[5].TranslateFace(Math.Abs(rotations[5, 0]-1));
+                    faces[5].RotationFace(Vector3.Up, -rotations[5, 1]);
                     UpdateFaces();
                 }
             }
-            if (keyboardState.IsKeyUp(Keys.NumPad4))
-                appui[3] = false;
-            if (keyboardState.IsKeyDown(Keys.NumPad5))
+            else
             {
-                if (!appui[4])
+                if (newKey.IsKeyDown(Keys.NumPad1) && oldKey.IsKeyUp(Keys.NumPad1))
+                    {
+                        faces[0].TranslateFace(rotations[0, 0]);
+                        faces[0].RotationFace(Vector3.Forward, rotations[0, 1]);
+                        UpdateFaces();
+                    }
+                
+                if (newKey.IsKeyDown(Keys.NumPad2) && oldKey.IsKeyUp(Keys.NumPad2))
+                    {
+                        faces[1].TranslateFace(rotations[1,0]);
+                        faces[1].RotationFace(Vector3.Right, rotations[1, 1]);
+                        UpdateFaces();
+                    }
+                if (newKey.IsKeyDown(Keys.NumPad3) && oldKey.IsKeyUp(Keys.NumPad3))
                 {
-                    appui[4] = true;
-                    faces[4].TranslateFace(DROITE);
-                    faces[4].RotationFace(-MathHelper.PiOver2);
+                    faces[2].TranslateFace(rotations[2, 0]);
+                    faces[2].RotationFace(Vector3.Backward, rotations[2, 1]);
                     UpdateFaces();
                 }
-            }
-            if (keyboardState.IsKeyUp(Keys.NumPad5))
-                appui[4] = false;
-            if (keyboardState.IsKeyDown(Keys.NumPad6))
-            {
-                if (!appui[5])
-                {
-                    appui[5] = true;
-                    faces[5].TranslateFace(DROITE);
-                    faces[5].RotationFace(MathHelper.PiOver2);
-                    UpdateFaces();
-                }
-            }
-            if (keyboardState.IsKeyUp(Keys.NumPad6))
-                appui[5] = false;
 
-            
+                if (newKey.IsKeyDown(Keys.NumPad4) && oldKey.IsKeyUp(Keys.NumPad4))
+                {
+                    faces[3].TranslateFace(rotations[3, 0]);
+                    faces[3].RotationFace(Vector3.Left, rotations[3, 1]);
+                    UpdateFaces();
+                }
+                if (newKey.IsKeyDown(Keys.NumPad5) && oldKey.IsKeyUp(Keys.NumPad5))
+                {
+                    faces[4].TranslateFace(rotations[4, 0]);
+                    faces[4].RotationFace(Vector3.Down, rotations[4, 1]);
+                    UpdateFaces();
+                }
+                if (newKey.IsKeyDown(Keys.NumPad6) && oldKey.IsKeyUp(Keys.NumPad6))
+                {
+                    faces[5].TranslateFace(rotations[5, 0]);
+                    faces[5].RotationFace(Vector3.Up, rotations[5, 1]);
+                    UpdateFaces();
+                }
+            }
+
             base.Update(gameTime);
         }
     }
