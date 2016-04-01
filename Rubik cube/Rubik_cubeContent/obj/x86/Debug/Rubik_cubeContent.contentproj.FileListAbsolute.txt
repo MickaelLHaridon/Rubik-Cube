@@ -1,0 +1,2 @@
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cubeContent\obj\x86\Debug\Rubik_cubeContent.contentprojResolveAssemblyReference.cache
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cubeContent\obj\x86\Debug\Rubik_cubeContent.contentprojResolveAssemblyReference.cache

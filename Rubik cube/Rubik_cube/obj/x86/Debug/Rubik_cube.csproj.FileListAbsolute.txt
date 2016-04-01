@@ -1,0 +1,33 @@
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Rubik_cube.exe
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Rubik_cube.pdb
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.dll
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.Game.dll
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.dll
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.dll
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.dll
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.xml
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.Game.xml
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.xml
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\obj\x86\Debug\Rubik_cube.csprojResolveAssemblyReference.cache
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\obj\x86\Debug\Rubik_cube.exe
+E:\Visual Studio Projet\Rubik cube\Rubik cube\Rubik_cube\obj\x86\Debug\Rubik_cube.pdb
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Rubik_cube.exe
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Rubik_cube.pdb
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.dll
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.Game.dll
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.dll
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.dll
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.dll
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.xml
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.Game.xml
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.xml
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\obj\x86\Debug\Rubik_cube.csprojResolveAssemblyReference.cache
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\obj\x86\Debug\Rubik_cube.exe
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\obj\x86\Debug\Rubik_cube.pdb
+E:\Git Project\Rubik cube\Rubik cube\Rubik_cube\bin\x86\Debug\Content\Coin.xnb
