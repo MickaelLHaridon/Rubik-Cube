@@ -52,6 +52,7 @@ namespace Rubik_cube
         {
             lesCubes = ((Game1)Game).Components.OfType<Cube>().ToArray();
             etatInitial = lesCubes;
+            //Console.WriteLine(etatInitial.Count());
             UpdateFaces();
             base.Initialize();
         }
@@ -71,32 +72,38 @@ namespace Rubik_cube
                 if (lesCubes[i].position.Z == 0)
                 {
                     faces[0].AjouterCube(i_face, lesCubes[i]);
+                    lesCubes[i].CurrentFace = faces[0];
                     i_face++;
                 }
                 if (lesCubes[i].position.X == 2)
                 {
                     faces[1].AjouterCube(i_droite, lesCubes[i]);
+                    lesCubes[i].CurrentFace = faces[1];
                     i_droite++;
                 }
 
                 if (lesCubes[i].position.Z == -4)
                 {
                     faces[2].AjouterCube(i_back, lesCubes[i]);
+                    lesCubes[i].CurrentFace = faces[2];
                     i_back++;
                 }
                 if (lesCubes[i].position.X == -2)
                 {
                     faces[3].AjouterCube(i_gauche, lesCubes[i]);
+                    lesCubes[i].CurrentFace = faces[3];
                     i_gauche++;
                 }
                 if (lesCubes[i].position.Y == -2)
                 {
                     faces[4].AjouterCube(i_bas, lesCubes[i]);
+                    lesCubes[i].CurrentFace = faces[4];
                     i_bas++;
                 }
                 if (lesCubes[i].position.Y == 2)
                 {
                     faces[5].AjouterCube(i_haut, lesCubes[i]);
+                    lesCubes[i].CurrentFace = faces[5];
                     i_haut++;
                 }
             }

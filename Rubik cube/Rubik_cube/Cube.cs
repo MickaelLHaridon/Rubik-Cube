@@ -58,6 +58,16 @@ namespace Rubik_cube
             get; set;
         }
 
+        public Face FaceBase
+        {
+            get; set;
+        }
+
+        public Face CurrentFace
+        {
+            get; set;
+        }
+
         public Cube(Game game,int num, Vector3 pos, Color[] colors) : base(game)
         {
             cam = ((Game1)Game).Components.OfType<Camera>().First();

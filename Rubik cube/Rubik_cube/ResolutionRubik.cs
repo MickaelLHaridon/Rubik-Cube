@@ -16,7 +16,7 @@ namespace Rubik_cube
     {
         Face[] faces;
         Cube[] lesCubes;
-        Modele EtatSolution;
+        Cube[] EtatSolution;
         List<Modele> EtatsVoisins;
         List<Modele> listeEtatsOuverts;
         List<Modele> listeEtatsFermes;
@@ -28,11 +28,13 @@ namespace Rubik_cube
             listeEtatsOuverts = new List<Modele>();
             listeEtatsFermes = new List<Modele>();
             EtatsVoisins = new List<Modele>();
-            EtatSolution = new Modele(this.Game,((Game1)Game).Components.OfType<GestionFace>().First().etatInitial);
+            
         }
         
         public override void Initialize()
         {
+            EtatSolution = ((Game1)Game).Components.OfType<GestionFace>().First().etatInitial;
+            Console.WriteLine(EtatSolution.Count());
             base.Initialize();
         }
         
@@ -48,6 +50,19 @@ namespace Rubik_cube
             Modele EtatDebut = new Modele(this.Game, lesCubes);
             listeEtatsOuverts.Add(EtatDebut);
 
+            Modele minNoeud = EtatDebut;
+            int f = minNoeud.f;
+            for (int i = 0; i < listeEtatsOuverts.Count; i++)
+            {
+                if (listeEtatsOuverts[i].f < f)
+                {
+                    minNoeud = listeEtatsOuverts[i];
+                    f = listeEtatsOuverts[i].f;
+                }
+            }
+
+            listeEtatsFermes.Add(minNoeud);
+
             while (listeEtatsOuverts.Any())
             {
                 for (int i = 0; i < listeEtatsOuverts.Count; i++)
@@ -59,6 +74,15 @@ namespace Rubik_cube
 
                     foreach (Modele Voisin in EtatsVoisins)
                     {
+                        Console.WriteLine(Voisin.h + "," + Voisin.g);
+                        //Console.WriteLine(Voisin.Etat[0].numeroCube);
+                        List<int> list = new List<int>();
+                        for (int j = 0; j < Voisin.Etat.Length; j++)
+                        {
+                            //list.Add((Voisin.Etat[j].numeroPosition));
+                        }
+                        list.ForEach(Console.Write);
+
                         if (Voisin.h == 0)
                         {
                             // Rubik Cube terminé
@@ -66,7 +90,7 @@ namespace Rubik_cube
                         }
                         else
                         {
-                            if (!(listeEtatsOuverts.Contains(Voisin)) && !(listeEtatsFermes).Contains(Voisin))
+                            if (!(listeEtatsOuverts.Contains(Voisin)) && !(listeEtatsFermes.Contains(Voisin)))
                             {
                                 listeEtatsOuverts.Add(Voisin);
                             }

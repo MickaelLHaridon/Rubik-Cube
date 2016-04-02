@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Rubik_cube
 {
-    class Face : GameComponent
+    public class Face : GameComponent
     {
         int numFace;
         public Cube[] cubes {get;set;}
@@ -103,6 +103,7 @@ namespace Rubik_cube
         public void AjouterCube(int i, Cube cube)
         {
             cubes[i] = cube;
+            cubes[i].FaceBase = this;
         }
     }
 }
