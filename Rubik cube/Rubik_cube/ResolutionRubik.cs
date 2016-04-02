@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -16,17 +16,19 @@ namespace Rubik_cube
     {
         Face[] faces;
         Cube[] lesCubes;
-        List<Cube[]> EtatsVoisins;
-        List<Cube[]> listeEtatsOuverts;
-        List<Cube[]> listeEtatsFermes;
+        Modele EtatSolution;
+        List<Modele> EtatsVoisins;
+        List<Modele> listeEtatsOuverts;
+        List<Modele> listeEtatsFermes;
 
         public ResolutionRubik(Game game)
             : base(game)
         {
             faces = ((Game1)Game).Components.OfType<GestionFace>().First().faces;
-            listeEtatsOuverts = new List<Cube[]>();
-            listeEtatsFermes = new List<Cube[]>();
-            EtatsVoisins = new List<Cube[]>();
+            listeEtatsOuverts = new List<Modele>();
+            listeEtatsFermes = new List<Modele>();
+            EtatsVoisins = new List<Modele>();
+            EtatSolution = new Modele(this.Game,((Game1)Game).Components.OfType<GestionFace>().First().etatInitial);
         }
         
         public override void Initialize()
@@ -41,35 +43,50 @@ namespace Rubik_cube
 
         public void Resolution ()
         {
-            int g = 0;
 
             lesCubes = ((Game1)Game).Components.OfType<GestionFace>().First().lesCubes;
+            Modele EtatDebut = new Modele(this.Game, lesCubes);
+            listeEtatsOuverts.Add(EtatDebut);
 
-            listeEtatsOuverts.Add(lesCubes);
-
-            while (!listeEtatsOuverts.Any())
+            while (listeEtatsOuverts.Any())
             {
-
-            }
-
-        }
-
-        public int calculCubesMalPlaces()
-        {
-            int h = 0;
-            for (int i = 0; i < 27; i++)
-            {
-                if (lesCubes[i].numeroCube != lesCubes[i].numeroPosition)
+                for (int i = 0; i < listeEtatsOuverts.Count; i++)
                 {
-                    h++;
+                    Modele etat = new Modele(this.Game,listeEtatsOuverts[i]);
+                    EtatsVoisins = etat.findAlternatives(EtatSolution);
+
+                    //((Game1)Game).Components.OfType<GestionFace>().First().UpdateFaces();
+
+                    foreach (Modele Voisin in EtatsVoisins)
+                    {
+                        if (Voisin.h == 0)
+                        {
+                            // Rubik Cube terminé
+                            return;
+                        }
+                        else
+                        {
+                            if (!(listeEtatsOuverts.Contains(Voisin)) && !(listeEtatsFermes).Contains(Voisin))
+                            {
+                                listeEtatsOuverts.Add(Voisin);
+                            }
+                            else if (!(listeEtatsOuverts.Contains(Voisin)) && listeEtatsOuverts[listeEtatsOuverts.IndexOf(Voisin)].f < Voisin.f)
+                            {
+                                listeEtatsOuverts.Remove(listeEtatsOuverts[listeEtatsOuverts.IndexOf(Voisin)]);
+                                listeEtatsOuverts.Add(Voisin);
+                            }
+                            else if (!(listeEtatsFermes.Contains(Voisin)) && !(listeEtatsFermes[listeEtatsFermes.IndexOf(Voisin)].f < Voisin.f))
+                            {
+                                listeEtatsFermes.Remove(listeEtatsFermes[listeEtatsFermes.IndexOf(Voisin)]);
+                                listeEtatsOuverts.Add(Voisin);
+                            }
+                        }
+                    }
                 }
             }
-            return h;
+
         }
 
-        public int calculF (int h,int g)
-        {
-            return h + g;
-        }
+        
     }
 }

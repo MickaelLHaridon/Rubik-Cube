@@ -21,6 +21,7 @@ namespace Rubik_cube
         SpriteBatch spriteBatch;
         Camera cam;
         GestionFace gestFace;
+        ResolutionRubik resolution;
         EnsembleCubes ensCubes;
         public Game1()
         {
@@ -42,6 +43,8 @@ namespace Rubik_cube
             Components.Add(ensCubes);
             gestFace = new GestionFace(this);
             Components.Add(gestFace);
+            resolution = new ResolutionRubik(this);
+            Components.Add(resolution);
             IsMouseVisible = true;
             base.Initialize();
         }

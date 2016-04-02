@@ -17,14 +17,24 @@ namespace Rubik_cube
         {
             get; set;
         }
+        public Cube[] etatInitial
+        {
+            get; set;
+        }
         bool leftShift = false;
         const float DROITE = 0;
         const float GAUCHE = 1;
         Random rand = new Random();
         KeyboardState oldKey;
         KeyboardState newKey;
-        float[,] rotations;
-        Vector3[] vectRot;
+        public float[,] rotations
+        {
+            get; set;
+        }
+        public Vector3[] vectRot
+        {
+            get; set;
+        }
 
         public GestionFace(Game game) :base(game)
         {
@@ -41,6 +51,7 @@ namespace Rubik_cube
         public override void Initialize()
         {
             lesCubes = ((Game1)Game).Components.OfType<Cube>().ToArray();
+            etatInitial = lesCubes;
             UpdateFaces();
             base.Initialize();
         }
@@ -118,6 +129,11 @@ namespace Rubik_cube
         {
             oldKey = newKey;
             newKey = Keyboard.GetState();
+
+            if (newKey.IsKeyDown(Keys.Enter) && oldKey.IsKeyUp(Keys.Enter))
+            {
+                ((Game1)Game).Components.OfType<ResolutionRubik>().First().Resolution();
+            }
 
             if (newKey.IsKeyDown(Keys.Space) && oldKey.IsKeyUp(Keys.Space))
             {
