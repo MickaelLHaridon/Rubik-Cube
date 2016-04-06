@@ -45,6 +45,9 @@ namespace Rubik_cube
             : base(game)
         {
             Etat = etat;
+            this.g = 0;
+            this.h = calculCubesMalPlaces(etat);
+            this.f = g + h;
             faces = ((Game1)Game).Components.OfType<GestionFace>().First().faces;
             alterEtats = new List<Modele>();
             rotations = ((Game1)Game).Components.OfType<GestionFace>().First().rotations;
@@ -76,7 +79,7 @@ namespace Rubik_cube
             Face0AlternativeGauche.faces[0].RotationFace(vectRot[0], -rotations[0, 1]);
             Face0AlternativeGauche.g += 1;
             //Face0AlternativeGauche.h = calcH2(Face0AlternativeGauche,EtatSolution);
-            Face0AlternativeGauche.h = calculCubesMalPlaces(Face0AlternativeGauche);
+            Face0AlternativeGauche.h = calculCubesMalPlaces(Face0AlternativeGauche.Etat);
             Face0AlternativeGauche.f = calculF(h,g);
             UpdateFacesModele(Face0AlternativeGauche);
             alterEtats.Add(Face0AlternativeGauche);
@@ -86,7 +89,7 @@ namespace Rubik_cube
             Face0AlternativeDroite.faces[0].RotationFace(vectRot[0], rotations[0, 1]);
             Face0AlternativeDroite.g += 1;
             //Face0AlternativeDroite.h = calcH2(Face0AlternativeDroite, EtatSolution);
-            Face0AlternativeDroite.h = calculCubesMalPlaces(Face0AlternativeDroite);
+            Face0AlternativeDroite.h = calculCubesMalPlaces(Face0AlternativeDroite.Etat);
             Face0AlternativeDroite.f = calculF(h, g);
             UpdateFacesModele(Face0AlternativeDroite);
             alterEtats.Add(Face0AlternativeDroite);
@@ -96,7 +99,7 @@ namespace Rubik_cube
             Face1AlternativeGauche.faces[1].RotationFace(vectRot[1], -rotations[1, 1]);
             Face1AlternativeGauche.g += 1;
             //Face1AlternativeGauche.h = calcH2(Face1AlternativeGauche, EtatSolution);
-            Face1AlternativeGauche.h = calculCubesMalPlaces(Face1AlternativeGauche);
+            Face1AlternativeGauche.h = calculCubesMalPlaces(Face1AlternativeGauche.Etat);
             Face1AlternativeGauche.f = calculF(h, g);
             UpdateFacesModele(Face1AlternativeGauche);
             alterEtats.Add(Face1AlternativeGauche);
@@ -106,7 +109,7 @@ namespace Rubik_cube
             Face1AlternativeDroite.faces[1].RotationFace(vectRot[1], rotations[1, 1]);
             Face1AlternativeDroite.g += 1;
             //Face1AlternativeDroite.h = calcH2(Face1AlternativeDroite, EtatSolution);
-            Face1AlternativeDroite.h = calculCubesMalPlaces(Face1AlternativeDroite);
+            Face1AlternativeDroite.h = calculCubesMalPlaces(Face1AlternativeDroite.Etat);
             Face1AlternativeDroite.f = calculF(h, g);
             UpdateFacesModele(Face1AlternativeDroite);
             alterEtats.Add(Face1AlternativeDroite);
@@ -116,7 +119,7 @@ namespace Rubik_cube
             Face2AlternativeGauche.faces[2].RotationFace(vectRot[2], -rotations[2, 1]);
             Face2AlternativeGauche.g += 1;
             //Face2AlternativeGauche.h = calcH2(Face2AlternativeGauche, EtatSolution);
-            Face2AlternativeGauche.h = calculCubesMalPlaces(Face2AlternativeGauche);
+            Face2AlternativeGauche.h = calculCubesMalPlaces(Face2AlternativeGauche.Etat);
             Face2AlternativeGauche.f = calculF(h, g);
             UpdateFacesModele(Face2AlternativeGauche);
             alterEtats.Add(Face2AlternativeGauche);
@@ -126,7 +129,7 @@ namespace Rubik_cube
             Face2AlternativeDroite.faces[2].RotationFace(vectRot[2], rotations[2, 1]);
             Face2AlternativeDroite.g += 1;
             //Face2AlternativeDroite.h = calcH2(Face2AlternativeDroite, EtatSolution);
-            Face2AlternativeDroite.h = calculCubesMalPlaces(Face2AlternativeDroite);
+            Face2AlternativeDroite.h = calculCubesMalPlaces(Face2AlternativeDroite.Etat);
             Face2AlternativeDroite.f = calculF(h, g);
             UpdateFacesModele(Face2AlternativeDroite);
             alterEtats.Add(Face2AlternativeDroite);
@@ -136,7 +139,7 @@ namespace Rubik_cube
             Face3AlternativeGauche.faces[3].RotationFace(vectRot[3], -rotations[3, 1]);
             Face3AlternativeGauche.g += 1;
             //Face3AlternativeGauche.h = calcH2(Face3AlternativeGauche, EtatSolution);
-            Face3AlternativeGauche.h = calculCubesMalPlaces(Face3AlternativeGauche);
+            Face3AlternativeGauche.h = calculCubesMalPlaces(Face3AlternativeGauche.Etat);
             Face3AlternativeGauche.f = calculF(h, g);
             UpdateFacesModele(Face3AlternativeGauche);
             alterEtats.Add(Face3AlternativeGauche);
@@ -146,7 +149,7 @@ namespace Rubik_cube
             Face3AlternativeDroite.faces[3].RotationFace(vectRot[3], rotations[3, 1]);
             Face3AlternativeDroite.g += 1;
             //Face3AlternativeDroite.h = calcH2(Face3AlternativeDroite, EtatSolution);
-            Face3AlternativeDroite.h = calculCubesMalPlaces(Face3AlternativeDroite);
+            Face3AlternativeDroite.h = calculCubesMalPlaces(Face3AlternativeDroite.Etat);
             Face3AlternativeDroite.f = calculF(h, g);
             UpdateFacesModele(Face3AlternativeDroite);
             alterEtats.Add(Face3AlternativeDroite);
@@ -156,7 +159,7 @@ namespace Rubik_cube
             Face4AlternativeGauche.faces[4].RotationFace(vectRot[4], -rotations[4, 1]);
             Face4AlternativeGauche.g += 1;
             //Face4AlternativeGauche.h = calcH2(Face4AlternativeGauche, EtatSolution);
-            Face4AlternativeGauche.h = calculCubesMalPlaces(Face4AlternativeGauche);
+            Face4AlternativeGauche.h = calculCubesMalPlaces(Face4AlternativeGauche.Etat);
             Face4AlternativeGauche.f = calculF(h, g);
             UpdateFacesModele(Face4AlternativeGauche);
             alterEtats.Add(Face4AlternativeGauche);
@@ -166,7 +169,7 @@ namespace Rubik_cube
             Face4AlternativeDroite.faces[4].RotationFace(vectRot[4], rotations[4, 1]);
             Face4AlternativeDroite.g += 1;
             //Face4AlternativeDroite.h = calcH2(Face4AlternativeDroite, EtatSolution);
-            Face4AlternativeDroite.h = calculCubesMalPlaces(Face4AlternativeDroite);
+            Face4AlternativeDroite.h = calculCubesMalPlaces(Face4AlternativeDroite.Etat);
             Face4AlternativeDroite.f = calculF(h, g);
             UpdateFacesModele(Face4AlternativeDroite);
             alterEtats.Add(Face4AlternativeDroite);
@@ -176,7 +179,7 @@ namespace Rubik_cube
             Face5AlternativeGauche.faces[5].RotationFace(vectRot[5], -rotations[5, 1]);
             Face5AlternativeGauche.g += 1;
             //Face5AlternativeGauche.h = calcH2(Face5AlternativeGauche, EtatSolution);
-            Face5AlternativeGauche.h = calculCubesMalPlaces(Face5AlternativeGauche);
+            Face5AlternativeGauche.h = calculCubesMalPlaces(Face5AlternativeGauche.Etat);
             Face5AlternativeGauche.f = calculF(h, g);
             UpdateFacesModele(Face5AlternativeGauche);
             alterEtats.Add(Face5AlternativeGauche);
@@ -186,7 +189,7 @@ namespace Rubik_cube
             Face5AlternativeDroite.faces[5].RotationFace(vectRot[5], rotations[5, 1]);
             Face5AlternativeDroite.g += 1;
             //Face5AlternativeDroite.h = calcH2(Face5AlternativeDroite, EtatSolution);
-            Face5AlternativeDroite.h = calculCubesMalPlaces(Face5AlternativeDroite);
+            Face5AlternativeDroite.h = calculCubesMalPlaces(Face5AlternativeDroite.Etat);
             Face5AlternativeDroite.f = calculF(h, g);
             UpdateFacesModele(Face5AlternativeDroite);
             alterEtats.Add(Face5AlternativeDroite);
@@ -251,16 +254,16 @@ namespace Rubik_cube
             }
         }
 
-        public int calculCubesMalPlaces(Modele etat)
+        public int calculCubesMalPlaces(Cube[] etat)
         {
             int h = 0;
             for (int i = 0; i < 27; i++)
             {
-                if (i != etat.Etat[i].numeroCube)
+                if (etat[i].numeroPosition != etat[i].numeroCube)
                 {
                     h++;
                 }
-                if (etat.Etat[i].FaceBase != etat.Etat[i].CurrentFace)
+                if (etat[i].FaceBase != etat[i].CurrentFace)
                 {
                     h++;
                 }

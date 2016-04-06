@@ -51,37 +51,51 @@ namespace Rubik_cube
             listeEtatsOuverts.Add(EtatDebut);
 
             Modele minNoeud = EtatDebut;
-            int f = minNoeud.f;
-            for (int i = 0; i < listeEtatsOuverts.Count; i++)
-            {
-                if (listeEtatsOuverts[i].f < f)
-                {
-                    minNoeud = listeEtatsOuverts[i];
-                    f = listeEtatsOuverts[i].f;
-                }
-            }
-
-            listeEtatsFermes.Add(minNoeud);
-
+            int i = 0;
+            
             while (listeEtatsOuverts.Any())
             {
-                for (int i = 0; i < listeEtatsOuverts.Count; i++)
+
+                int f = minNoeud.f;
+                for (int j = 0; j < listeEtatsOuverts.Count; j++)
                 {
-                    Modele etat = new Modele(this.Game,listeEtatsOuverts[i]);
-                    EtatsVoisins = etat.findAlternatives(EtatSolution);
+                    if (listeEtatsOuverts[j].f < f)
+                    {
+                        minNoeud = listeEtatsOuverts[j];
+                        f = listeEtatsOuverts[j].f;
+                    }
+                }
+
+                listeEtatsFermes.Add(minNoeud);
+                
+                    EtatsVoisins = listeEtatsOuverts[i].findAlternatives(EtatSolution);
 
                     //((Game1)Game).Components.OfType<GestionFace>().First().UpdateFaces();
 
                     foreach (Modele Voisin in EtatsVoisins)
                     {
+
+                        // Lignes de débuggage -------------------------
                         Console.WriteLine(Voisin.h + "," + Voisin.g);
                         //Console.WriteLine(Voisin.Etat[0].numeroCube);
                         List<int> list = new List<int>();
-                        for (int j = 0; j < Voisin.Etat.Length; j++)
+                        List<int> list2 = new List<int>();
+                        for (int k = 0; k < Voisin.Etat.Length; k++)
                         {
-                            //list.Add((Voisin.Etat[j].numeroPosition));
+                            //list.Add((Voisin.Etat[k].numeroCube));
+                            list.Add(minNoeud.Etat[k].numeroPosition);
                         }
-                        list.ForEach(Console.Write);
+                        //list.ForEach(Console.Write);
+                        //Console.Write("    ");
+
+                        for (int k = 0; k < Voisin.Etat.Length; k++)
+                        {
+                            list2.Add(minNoeud.Etat[k].numeroCube);
+                        }
+                        //list2.ForEach(Console.Write);
+
+                        //-----------------------------------------------
+
 
                         if (Voisin.h == 0)
                         {
@@ -90,24 +104,77 @@ namespace Rubik_cube
                         }
                         else
                         {
+                            /*
                             if (!(listeEtatsOuverts.Contains(Voisin)) && !(listeEtatsFermes.Contains(Voisin)))
                             {
                                 listeEtatsOuverts.Add(Voisin);
                             }
-                            else if (!(listeEtatsOuverts.Contains(Voisin)) && listeEtatsOuverts[listeEtatsOuverts.IndexOf(Voisin)].f < Voisin.f)
+                            else if (!(listeEtatsOuverts.Contains(Voisin)) || !(listeEtatsOuverts[listeEtatsOuverts.IndexOf(Voisin)].f < Voisin.f))
                             {
                                 listeEtatsOuverts.Remove(listeEtatsOuverts[listeEtatsOuverts.IndexOf(Voisin)]);
                                 listeEtatsOuverts.Add(Voisin);
                             }
-                            else if (!(listeEtatsFermes.Contains(Voisin)) && !(listeEtatsFermes[listeEtatsFermes.IndexOf(Voisin)].f < Voisin.f))
+                            else if (!(listeEtatsFermes.Contains(Voisin)) || !(listeEtatsFermes[listeEtatsFermes.IndexOf(Voisin)].f < Voisin.f))
                             {
                                 listeEtatsFermes.Remove(listeEtatsFermes[listeEtatsFermes.IndexOf(Voisin)]);
                                 listeEtatsOuverts.Add(Voisin);
+                            }*/
+
+                            bool n1 = false, n2 = false, n3 = false; 
+                            int kval = 0;
+                            for (int j = 0; j < listeEtatsOuverts.Count; j++)
+                            {
+                                //Console.Write(listeEtatsOuverts[j].f + " : ");
+                                //Console.Write(Voisin.f + ", ");
+
+                                if (listeEtatsOuverts[j].Etat == Voisin.Etat)
+                                {
+                                    n1 = true;
+                                    //Console.WriteLine(listeEtatsOuverts[j].f + " " + Voisin.f);
+                                }
+                                //if ((listeEtatsOuverts[j].Etat == Voisin.Etat) && (listeEtatsOuverts[listeEtatsOuverts.IndexOf(Voisin)].f < Voisin.f))
+                                if ((listeEtatsOuverts[j].Etat == Voisin.Etat) && (listeEtatsOuverts[j].f < Voisin.f))
+                                {
+                                    n2 = true;
+                                    kval = j;
+                                }
+                            }
+                            //Console.WriteLine("");
+                            for (int k = 0; k< listeEtatsFermes.Count; k++)
+                            {
+                                if (listeEtatsFermes[k].Etat == Voisin.Etat && n1 == false){
+                                    n1 = true;
+                                }
+                                //if ((listeEtatsFermes[k].Etat == Voisin.Etat) && (listeEtatsFermes[listeEtatsFermes.IndexOf(Voisin)].f < Voisin.f))
+                                if ((listeEtatsFermes[k].Etat == Voisin.Etat) && (listeEtatsFermes[k].f < Voisin.f))
+                                {
+                                    n3 = true;
+                                    kval = k;
+                                }
+                            }
+                            if (!n1 && !n2 && !n3) {
+                                listeEtatsOuverts.Add(Voisin);
+                                break;
+                            }
+                            if (n2) {
+                                listeEtatsOuverts.Remove(listeEtatsOuverts[kval]);
+                                listeEtatsOuverts.Add(Voisin);
+                                break;
+                            }
+                            if (n3) {
+                                listeEtatsFermes.Remove(listeEtatsFermes[kval]);
+                                listeEtatsOuverts.Add(Voisin);
+                                break;
+                            }
+                            n1 = false;
+                            n2 = false;
+                            n3 = false;
+                            kval = 0;
                             }
                         }
-                    }
-                }
-            }
+                i++;
+             }
+            
 
         }
 
